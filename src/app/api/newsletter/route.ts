@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { db } from "@/lib/db";
 
 const schema = z.object({
   email: z.string().email("Email tidak valid").max(254, "Email terlalu panjang"),
