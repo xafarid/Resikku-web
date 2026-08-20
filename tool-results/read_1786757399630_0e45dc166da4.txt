@@ -1,0 +1,2002 @@
+     1→/* ========================================
+     2→   RESIKKU ESSENTIALS — Design System
+     3→   Luxury Organic • Paper Soap • Glassmorphic
+     4→   ======================================== */
+     5→
+     6→/* ---------- Google Fonts ---------- */
+     7→@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+     8→
+     9→/* ---------- CSS Custom Properties ---------- */
+    10→:root {
+    11→  /* — Brand Colors (Organic Luxury Palette) — */
+    12→  --clr-primary: hsl(145, 38%, 32%);
+    13→  /* Deep forest sage */
+    14→  --clr-primary-light: hsl(145, 32%, 48%);
+    15→  /* Luminous sage */
+    16→  --clr-primary-dark: hsl(145, 45%, 18%);
+    17→  /* Ultra-dark forest */
+    18→  --clr-primary-muted: hsl(145, 22%, 75%);
+    19→  /* Soft sage */
+    20→  --clr-primary-soft: hsl(145, 35%, 94%);
+    21→  /* Very pale sage */
+    22→
+    23→  --clr-accent: hsl(38, 70%, 54%);
+    24→  /* Warm luxury gold */
+    25→  --clr-accent-light: hsl(38, 65%, 82%);
+    26→  /* Pale gold */
+    27→  --clr-accent-dark: hsl(38, 75%, 40%);
+    28→  /* Deep gold */
+    29→
+    30→  --clr-cream: #fbf9f5;
+    31→  /* Ultra-clean warm paper cream */
+    32→  --clr-cream-warm: #f4f1e8;
+    33→  /* Soft warm paper */
+    34→  --clr-cream-dark: #e8e4d8;
+    35→  /* Border paper tone */
+    36→
+    37→  --clr-text: hsl(150, 20%, 14%);
+    38→  /* Deep forest black */
+    39→  --clr-text-secondary: hsl(150, 10%, 42%);
+    40→  /* Elegant gray-green */
+    41→  --clr-text-muted: hsl(150, 8%, 62%);
+    42→  /* Subdued label text */
+    43→
+    44→  --clr-white: #ffffff;
+    45→  --clr-black: hsl(150, 20%, 8%);
+    46→  --clr-danger: hsl(0, 65%, 55%);
+    47→  --clr-success: hsl(145, 55%, 38%);
+    48→
+    49→  /* — Glassmorphism Tokens — */
+    50→  --glass-bg: transparent;
+    51→  --glass-bg-heavy: transparent;
+    52→  --glass-bg-light: transparent;
+    53→  --glass-border: rgba(255, 255, 255, 0.85);
+    54→  --glass-border-subtle: rgba(76, 130, 95, 0.14);
+    55→  --glass-blur: blur(16px);
+    56→  --glass-blur-heavy: blur(28px);
+    57→  --glass-shadow: 0 12px 36px rgba(24, 40, 30, 0.06);
+    58→  --glass-shadow-lg: 0 24px 56px rgba(24, 40, 30, 0.12);
+    59→
+    60→  /* — Typography — */
+    61→  --ff-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    62→  --ff-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    63→
+    64→  --fs-xs: 0.75rem;
+    65→  /* 12px */
+    66→  --fs-sm: 0.875rem;
+    67→  /* 14px */
+    68→  --fs-base: 1rem;
+    69→  /* 16px */
+    70→  --fs-md: 1.125rem;
+    71→  /* 18px */
+    72→  --fs-lg: 1.25rem;
+    73→  /* 20px */
+    74→  --fs-xl: 1.5rem;
+    75→  /* 24px */
+    76→  --fs-2xl: 1.875rem;
+    77→  /* 30px */
+    78→  --fs-3xl: 2.25rem;
+    79→  /* 36px */
+    80→  --fs-4xl: 3rem;
+    81→  /* 48px */
+    82→  --fs-5xl: 3.75rem;
+    83→  /* 60px */
+    84→
+    85→  --fw-light: 300;
+    86→  --fw-regular: 400;
+    87→  --fw-medium: 500;
+    88→  --fw-semibold: 600;
+    89→  --fw-bold: 700;
+    90→  --fw-extrabold: 800;
+    91→
+    92→  --lh-tight: 1.15;
+    93→  --lh-snug: 1.35;
+    94→  --lh-normal: 1.6;
+    95→  --lh-relaxed: 1.8;
+    96→
+    97→  --ls-tight: -0.025em;
+    98→  --ls-normal: 0;
+    99→  --ls-wide: 0.04em;
+   100→  --ls-wider: 0.08em;
+   101→  --ls-widest: 0.16em;
+   102→
+   103→  /* — Spacing — */
+   104→  --sp-1: 0.25rem;
+   105→  --sp-2: 0.5rem;
+   106→  --sp-3: 0.75rem;
+   107→  --sp-4: 1rem;
+   108→  --sp-5: 1.25rem;
+   109→  --sp-6: 1.5rem;
+   110→  --sp-8: 2rem;
+   111→  --sp-10: 2.5rem;
+   112→  --sp-12: 3rem;
+   113→  --sp-16: 4rem;
+   114→  --sp-20: 5rem;
+   115→  --sp-24: 6rem;
+   116→
+   117→  /* — Border Radius — */
+   118→  --radius-xs: 4px;
+   119→  --radius-sm: 8px;
+   120→  --radius-md: 12px;
+   121→  --radius-lg: 16px;
+   122→  --radius-xl: 22px;
+   123→  --radius-2xl: 32px;
+   124→  --radius-full: 9999px;
+   125→
+   126→  /* — Transitions — */
+   127→  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+   128→  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+   129→  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+   130→  --duration-fast: 0.2s;
+   131→  --duration-normal: 0.35s;
+   132→  --duration-slow: 0.6s;
+   133→
+   134→  /* — Z-Index — */
+   135→  --z-base: 1;
+   136→  --z-header: 100;
+   137→  --z-overlay: 200;
+   138→  --z-modal: 300;
+   139→  --z-toast: 400;
+   140→
+   141→  /* — Layout — */
+   142→  --container-max: 1200px;
+   143→  --container-padding: var(--sp-6);
+   144→}
+   145→
+   146→/* ---------- Reset & Base ---------- */
+   147→*,
+   148→*::before,
+   149→*::after {
+   150→  box-sizing: border-box;
+   151→  margin: 0;
+   152→  padding: 0;
+   153→}
+   154→
+   155→html {
+   156→  scroll-behavior: smooth;
+   157→  font-size: 16px;
+   158→  -webkit-font-smoothing: antialiased;
+   159→  -moz-osx-font-smoothing: grayscale;
+   160→}
+   161→
+   162→body {
+   163→  font-family: var(--ff-body);
+   164→  font-size: var(--fs-base);
+   165→  font-weight: var(--fw-regular);
+   166→  line-height: var(--lh-normal);
+   167→  color: var(--clr-text);
+   168→  background-color: var(--clr-cream);
+   169→  overflow-x: hidden;
+   170→}
+   171→
+   172→img,
+   173→svg,
+   174→video {
+   175→  display: block;
+   176→  max-width: 100%;
+   177→}
+   178→
+   179→a {
+   180→  color: inherit;
+   181→  text-decoration: none;
+   182→}
+   183→
+   184→button,
+   185→input,
+   186→select,
+   187→textarea {
+   188→  font: inherit;
+   189→  color: inherit;
+   190→  border: none;
+   191→  outline: none;
+   192→  background: transparent;
+   193→}
+   194→
+   195→button {
+   196→  cursor: pointer;
+   197→}
+   198→
+   199→ul,
+   200→ol {
+   201→  list-style: none;
+   202→}
+   203→
+   204→/* ---------- Typography & Utility ---------- */
+   205→h1,
+   206→h2,
+   207→h3,
+   208→h4,
+   209→h5,
+   210→h6 {
+   211→  font-family: var(--ff-heading);
+   212→  font-weight: var(--fw-bold);
+   213→  line-height: var(--lh-tight);
+   214→  color: var(--clr-text);
+   215→  letter-spacing: var(--ls-tight);
+   216→}
+   217→
+   218→.text-accent {
+   219→  color: var(--clr-primary-dark);
+   220→}
+   221→
+   222→@supports (-webkit-background-clip: text) or (background-clip: text) {
+   223→  .text-accent {
+   224→    background: linear-gradient(135deg, var(--clr-primary-dark), var(--clr-primary));
+   225→    -webkit-background-clip: text;
+   226→    background-clip: text;
+   227→    -webkit-text-fill-color: transparent;
+   228→  }
+   229→}
+   230→
+   231→.container {
+   232→  width: 100%;
+   233→  max-width: var(--container-max);
+   234→  margin: 0 auto;
+   235→  padding-left: var(--container-padding);
+   236→  padding-right: var(--container-padding);
+   237→}
+   238→
+   239→.section {
+   240→  padding: var(--sp-24) 0;
+   241→  position: relative;
+   242→}
+   243→
+   244→.section-header {
+   245→  text-align: center;
+   246→  max-width: 680px;
+   247→  margin: 0 auto var(--sp-12);
+   248→}
+   249→
+   250→.section-label {
+   251→  display: inline-flex;
+   252→  align-items: center;
+   253→  gap: var(--sp-2);
+   254→  font-size: var(--fs-xs);
+   255→  font-weight: var(--fw-bold);
+   256→  letter-spacing: var(--ls-widest);
+   257→  text-transform: uppercase;
+   258→  color: var(--clr-primary);
+   259→  margin-bottom: var(--sp-3);
+   260→  padding: var(--sp-1) var(--sp-4);
+   261→  background: var(--clr-primary-soft);
+   262→  border: 1px solid rgba(76, 130, 95, 0.18);
+   263→  border-radius: var(--radius-full);
+   264→}
+   265→
+   266→.section-title {
+   267→  font-size: var(--fs-3xl);
+   268→  font-weight: var(--fw-extrabold);
+   269→  margin-bottom: var(--sp-4);
+   270→  line-height: var(--lh-snug);
+   271→}
+   272→
+   273→.section-subtitle {
+   274→  font-size: var(--fs-md);
+   275→  color: var(--clr-text-secondary);
+   276→  line-height: var(--lh-relaxed);
+   277→}
+   278→
+   279→/* ---------- Buttons ---------- */
+   280→.btn {
+   281→  display: inline-flex;
+   282→  align-items: center;
+   283→  justify-content: center;
+   284→  gap: var(--sp-2);
+   285→  padding: var(--sp-3) var(--sp-6);
+   286→  border-radius: var(--radius-full);
+   287→  font-family: var(--ff-body);
+   288→  font-size: var(--fs-sm);
+   289→  font-weight: var(--fw-semibold);
+   290→  letter-spacing: var(--ls-wide);
+   291→  transition: all var(--duration-normal) var(--ease-smooth);
+   292→  white-space: nowrap;
+   293→  position: relative;
+   294→  overflow: hidden;
+   295→}
+   296→
+   297→.btn-primary {
+   298→  background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+   299→  color: var(--clr-white);
+   300→  box-shadow: 0 8px 24px rgba(45, 85, 60, 0.28);
+   301→}
+   302→
+   303→.btn-primary:hover {
+   304→  transform: translateY(-2px);
+   305→  box-shadow: 0 12px 32px rgba(45, 85, 60, 0.38);
+   306→  filter: brightness(1.05);
+   307→}
+   308→
+   309→.btn-secondary {
+   310→  background: rgba(255, 255, 255, 0.85);
+   311→  backdrop-filter: var(--glass-blur);
+   312→  -webkit-backdrop-filter: var(--glass-blur);
+   313→  color: var(--clr-text);
+   314→  border: 1px solid rgba(255, 255, 255, 0.9);
+   315→  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+   316→}
+   317→
+   318→.btn-secondary:hover {
+   319→  background: var(--clr-white);
+   320→  transform: translateY(-2px);
+   321→  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+   322→}
+   323→
+   324→.btn-lg {
+   325→  padding: var(--sp-4) var(--sp-8);
+   326→  font-size: var(--fs-base);
+   327→}
+   328→
+   329→.btn-sm {
+   330→  padding: var(--sp-2) var(--sp-5);
+   331→  font-size: var(--fs-xs);
+   332→}
+   333→
+   334→/* ---------- SVG Icons System ---------- */
+   335→.btn-svg {
+   336→  width: 18px;
+   337→  height: 18px;
+   338→  flex-shrink: 0;
+   339→  stroke: currentColor;
+   340→}
+   341→
+   342→.feat-svg {
+   343→  width: 16px;
+   344→  height: 16px;
+   345→  color: var(--clr-primary);
+   346→  flex-shrink: 0;
+   347→  stroke: currentColor;
+   348→}
+   349→
+   350→.step-svg {
+   351→  width: 24px;
+   352→  height: 24px;
+   353→  color: var(--clr-primary-dark);
+   354→  stroke: currentColor;
+   355→}
+   356→
+   357→.inline-svg {
+   358→  width: 14px;
+   359→  height: 14px;
+   360→  display: inline-block;
+   361→  vertical-align: middle;
+   362→  flex-shrink: 0;
+   363→  stroke: currentColor;
+   364→}
+   365→
+   366→.cart-header-svg {
+   367→  width: 22px;
+   368→  height: 22px;
+   369→  color: var(--clr-primary-dark);
+   370→  stroke: currentColor;
+   371→}
+   372→
+   373→.shipping-svg {
+   374→  width: 16px;
+   375→  height: 16px;
+   376→  color: var(--clr-primary);
+   377→  flex-shrink: 0;
+   378→  display: inline-block;
+   379→  vertical-align: middle;
+   380→  margin-right: 4px;
+   381→  stroke: currentColor;
+   382→}
+   383→
+   384→.toast-svg {
+   385→  width: 20px;
+   386→  height: 20px;
+   387→  color: #a3e635;
+   388→  flex-shrink: 0;
+   389→  stroke: currentColor;
+   390→}
+   391→
+   392→.empty-bag-svg {
+   393→  width: 52px;
+   394→  height: 52px;
+   395→  color: var(--clr-primary-muted);
+   396→  margin: 0 auto var(--sp-3);
+   397→  stroke: currentColor;
+   398→}
+   399→
+   400→.footer-social-link svg {
+   401→  width: 20px;
+   402→  height: 20px;
+   403→  color: rgba(255, 255, 255, 0.7);
+   404→  stroke: currentColor;
+   405→  transition: all var(--duration-fast) var(--ease-smooth);
+   406→}
+   407→
+   408→.footer-social-link:hover svg {
+   409→  color: var(--clr-accent);
+   410→  transform: scale(1.15);
+   411→}
+   412→
+   413→.spec-icon svg {
+   414→  width: 22px;
+   415→  height: 22px;
+   416→  color: var(--clr-primary);
+   417→  stroke: currentColor;
+   418→}
+   419→
+   420→.value-card-icon svg {
+   421→  width: 26px;
+   422→  height: 26px;
+   423→  color: var(--clr-primary);
+   424→  margin-bottom: var(--sp-2);
+   425→  stroke: currentColor;
+   426→}
+   427→
+   428→.product-scent-note {
+   429→  display: flex;
+   430→  align-items: center;
+   431→  gap: 5px;
+   432→}
+   433→
+   434→.sheet-count-chip {
+   435→  display: flex;
+   436→  align-items: center;
+   437→  gap: 5px;
+   438→}
+   439→
+   440→/* ---------- Glass Card Primitive ---------- */
+   441→.glass-card {
+   442→  background: var(--glass-bg);
+   443→  backdrop-filter: var(--glass-blur);
+   444→  -webkit-backdrop-filter: var(--glass-blur);
+   445→  border: 1px solid var(--glass-border);
+   446→  box-shadow: var(--glass-shadow);
+   447→  border-radius: var(--radius-2xl);
+   448→  transition: all var(--duration-normal) var(--ease-smooth);
+   449→}
+   450→
+   451→.glass-card:hover {
+   452→  box-shadow: var(--glass-shadow-lg);
+   453→  border-color: rgba(255, 255, 255, 1);
+   454→}
+   455→
+   456→/* ============================================
+   457→   HEADER — Floating Island Capsule Navbar
+   458→   ============================================ */
+   459→.site-header {
+   460→  position: fixed;
+   461→  top: 16px;
+   462→  left: 0;
+   463→  right: 0;
+   464→  z-index: var(--z-header);
+   465→  pointer-events: none;
+   466→}
+   467→
+   468→.header-container {
+   469→  max-width: 1080px;
+   470→}
+   471→
+   472→.header-inner {
+   473→  pointer-events: all;
+   474→  display: flex;
+   475→  align-items: center;
+   476→  justify-content: space-between;
+   477→  background: transparent;
+   478→  border-color: rgba(1, 132, 5, 0.3);
+   479→  backdrop-filter: blur(20px);
+   480→  -webkit-backdrop-filter: blur(20px);
+   481→  border: 1px solid rgba(0, 105, 19, 0.95);
+   482→  box-shadow: 0 10px 32px rgba(24, 40, 30, 0.08);
+   483→  border-radius: var(--radius-full);
+   484→  padding: var(--sp-2) var(--sp-6);
+   485→  transition: all var(--duration-normal) var(--ease-smooth);
+   486→}
+   487→
+   488→.site-header.scrolled .header-inner {
+   489→  background: transparent;
+   490→  border-color: rgba(15, 119, 2, 0.3);
+   491→  backdrop-filter: blur(20px);
+   492→  box-shadow: 0 14px 40px rgba(24, 40, 30, 0.12);
+   493→  border-color: rgba(76, 130, 95, 0.2);
+   494→}
+   495→
+   496→.header-logo {
+   497→  display: flex;
+   498→  align-items: center;
+   499→  gap: var(--sp-3);
+   500→  color: var(--clr-primary);
+   501→}
+   502→
+   503→.header-logo svg {
+   504→  width: 36px;
+   505→  height: 36px;
+   506→  transition: transform var(--duration-normal) var(--ease-spring);
+   507→}
+   508→
+   509→.header-logo:hover svg {
+   510→  transform: rotate(12deg) scale(1.06);
+   511→}
+   512→
+   513→.header-logo-text {
+   514→  font-family: var(--ff-heading);
+   515→  font-size: var(--fs-md);
+   516→  font-weight: var(--fw-bold);
+   517→  color: var(--clr-primary-dark);
+   518→  letter-spacing: var(--ls-wider);
+   519→  text-transform: uppercase;
+   520→  line-height: 1.1;
+   521→}
+   522→
+   523→.header-logo-text span {
+   524→  display: block;
+   525→  font-size: 10px;
+   526→  font-weight: var(--fw-medium);
+   527→  letter-spacing: var(--ls-widest);
+   528→  color: var(--clr-text-secondary);
+   529→  text-transform: uppercase;
+   530→}
+   531→
+   532→.header-nav {
+   533→  display: flex;
+   534→  align-items: center;
+   535→  gap: var(--sp-1);
+   536→}
+   537→
+   538→.header-nav a {
+   539→  font-size: var(--fs-sm);
+   540→  font-weight: var(--fw-semibold);
+   541→  color: var(--clr-text-secondary);
+   542→  padding: var(--sp-2) var(--sp-4);
+   543→  border-radius: var(--radius-full);
+   544→  transition: all var(--duration-fast) var(--ease-smooth);
+   545→}
+   546→
+   547→.header-nav a:hover {
+   548→  color: var(--clr-primary-dark);
+   549→  background: rgba(76, 130, 95, 0.08);
+   550→}
+   551→
+   552→.header-nav a.active {
+   553→  color: var(--clr-primary-dark);
+   554→  background: rgba(76, 130, 95, 0.18);
+   555→  /* 👈 18% hijau transparan */
+   556→  box-shadow: inset 0 0 0 1px rgba(76, 130, 95, 0.25);
+   557→  backdrop-filter: blur(8px);
+   558→  /* Opsional: efek kaca buram */
+   559→}
+   560→
+   561→
+   562→.header-actions {
+   563→  display: flex;
+   564→  align-items: center;
+   565→  gap: var(--sp-2);
+   566→}
+   567→
+   568→.cart-toggle {
+   569→  position: relative;
+   570→  width: 42px;
+   571→  height: 42px;
+   572→  display: flex;
+   573→  align-items: center;
+   574→  justify-content: center;
+   575→  border-radius: var(--radius-full);
+   576→  background: var(--clr-primary-soft);
+   577→  border: 1px solid rgba(76, 130, 95, 0.15);
+   578→  transition: all var(--duration-fast) var(--ease-smooth);
+   579→}
+   580→
+   581→.cart-toggle:hover {
+   582→  background: rgba(76, 130, 95, 0.16);
+   583→  transform: scale(1.05);
+   584→}
+   585→
+   586→.cart-toggle svg {
+   587→  width: 20px;
+   588→  height: 20px;
+   589→  stroke: var(--clr-primary-dark);
+   590→  fill: none;
+   591→  stroke-width: 2;
+   592→  stroke-linecap: round;
+   593→  stroke-linejoin: round;
+   594→}
+   595→
+   596→.cart-badge {
+   597→  position: absolute;
+   598→  top: -2px;
+   599→  right: -2px;
+   600→  min-width: 20px;
+   601→  height: 20px;
+   602→  padding: 0 5px;
+   603→  border-radius: var(--radius-full);
+   604→  background: var(--clr-accent);
+   605→  color: var(--clr-text);
+   606→  font-size: 10px;
+   607→  font-weight: var(--fw-extrabold);
+   608→  display: flex;
+   609→  align-items: center;
+   610→  justify-content: center;
+   611→  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+   612→  transform: scale(0);
+   613→  transition: transform var(--duration-normal) var(--ease-spring);
+   614→}
+   615→
+   616→.cart-badge.show {
+   617→  transform: scale(1);
+   618→}
+   619→
+   620→.cart-badge.bounce {
+   621→  animation: cartBadgeBounce 0.5s var(--ease-spring);
+   622→}
+   623→
+   624→@keyframes cartBadgeBounce {
+   625→
+   626→  0%,
+   627→  100% {
+   628→    transform: scale(1);
+   629→  }
+   630→
+   631→  50% {
+   632→    transform: scale(1.4);
+   633→  }
+   634→}
+   635→
+   636→.menu-toggle {
+   637→  display: none;
+   638→  width: 40px;
+   639→  height: 40px;
+   640→  flex-direction: column;
+   641→  align-items: center;
+   642→  justify-content: center;
+   643→  gap: 5px;
+   644→  border-radius: var(--radius-full);
+   645→  background: var(--clr-primary-soft);
+   646→}
+   647→
+   648→.menu-toggle span {
+   649→  display: block;
+   650→  width: 18px;
+   651→  height: 2px;
+   652→  background: var(--clr-primary-dark);
+   653→  border-radius: var(--radius-full);
+   654→  transition: all var(--duration-normal) var(--ease-out);
+   655→}
+   656→
+   657→.menu-toggle.active span:nth-child(1) {
+   658→  transform: rotate(45deg) translate(2.5px, 2.5px);
+   659→}
+   660→
+   661→.menu-toggle.active span:nth-child(2) {
+   662→  opacity: 0;
+   663→}
+   664→
+   665→.menu-toggle.active span:nth-child(3) {
+   666→  transform: rotate(-45deg) translate(2.5px, -2.5px);
+   667→}
+   668→
+   669→/* ============================================
+   670→   HERO SECTION — Video Showcase + Glass Frame
+   671→   ============================================ */
+   672→.hero {
+   673→  min-height: 100vh;
+   674→  display: flex;
+   675→  flex-direction: column;
+   676→  justify-content: flex-end;
+   677→  align-items: center;
+   678→  position: relative;
+   679→  overflow: hidden;
+   680→  padding: 130px var(--container-padding) var(--sp-12);
+   681→  background: var(--clr-cream);
+   682→}
+   683→
+   684→/* Video Background */
+   685→.hero-video-wrap {
+   686→  position: absolute;
+   687→  inset: 0;
+   688→  z-index: 0;
+   689→}
+   690→
+   691→.hero-video {
+   692→  width: 100%;
+   693→  height: 100%;
+   694→  object-fit: cover;
+   695→  display: block;
+   696→}
+   697→
+   698→.hero-video-overlay {
+   699→  position: absolute;
+   700→  inset: 0;
+   701→  background: linear-gradient(180deg,
+   702→      rgba(251, 249, 245, 0.15) 0%,
+   703→      rgba(251, 249, 245, 0.35) 45%,
+   704→      rgba(251, 249, 245, 0.9) 85%,
+   705→      var(--clr-cream) 100%);
+   706→  z-index: 1;
+   707→  pointer-events: none;
+   708→}
+   709→
+   710→.hero-content {
+   711→  position: relative;
+   712→  z-index: 2;
+   713→  width: 100%;
+   714→  max-width: 860px;
+   715→  margin: 0 auto;
+   716→  padding-top: 10px;
+   717→  padding-bottom: 60px;
+   718→}
+   719→
+   720→/* Luxury Floating Glass Banner */
+   721→.hero-glass-card {
+   722→  background: transparent;
+   723→  backdrop-filter: blur(22px);
+   724→  -webkit-backdrop-filter: blur(22px);
+   725→  border: 1px solid rgba(0, 105, 19, 0.95);
+   726→  box-shadow: 0 24px 64px rgba(24, 40, 30, 0.1);
+   727→  border-radius: var(--radius-2xl);
+   728→  padding: var(--sp-8) var(--sp-10);
+   729→  text-align: center;
+   730→}
+   731→
+   732→.hero-badge {
+   733→  display: inline-flex;
+   734→  align-items: center;
+   735→  gap: var(--sp-2);
+   736→  padding: var(--sp-1) var(--sp-4);
+   737→  border-radius: var(--radius-full);
+   738→  background: var(--clr-primary-soft);
+   739→  border: 1px solid rgba(76, 130, 95, 0.2);
+   740→  font-size: var(--fs-xs);
+   741→  font-weight: var(--fw-bold);
+   742→  letter-spacing: var(--ls-wider);
+   743→  color: var(--clr-primary-dark);
+   744→  text-transform: uppercase;
+   745→  margin-bottom: var(--sp-4);
+   746→}
+   747→
+   748→.hero-badge-dot {
+   749→  width: 7px;
+   750→  height: 7px;
+   751→  border-radius: 50%;
+   752→  background: var(--clr-primary);
+   753→  display: inline-block;
+   754→  animation: pulseDot 2s ease-in-out infinite;
+   755→}
+   756→
+   757→@keyframes pulseDot {
+   758→
+   759→  0%,
+   760→  100% {
+   761→    transform: scale(1);
+   762→    opacity: 1;
+   763→  }
+   764→
+   765→  50% {
+   766→    transform: scale(1.4);
+   767→    opacity: 0.6;
+   768→  }
+   769→}
+   770→
+   771→.hero-title {
+   772→  font-size: var(--fs-4xl);
+   773→  font-weight: var(--fw-extrabold);
+   774→  line-height: var(--lh-tight);
+   775→  margin-bottom: var(--sp-4);
+   776→  letter-spacing: var(--ls-tight);
+   777→  color: var(--clr-text);
+   778→}
+   779→
+   780→.hero-subtitle {
+   781→  font-size: var(--fs-md);
+   782→  color: var(--clr-text-secondary);
+   783→  line-height: var(--lh-relaxed);
+   784→  max-width: 640px;
+   785→  margin: 0 auto var(--sp-6);
+   786→}
+   787→
+   788→h3.hero-subtitle {
+   789→  font-family: var(--ff-heading);
+   790→  font-size: var(--fs-base);
+   791→  font-weight: var(--fw-bold);
+   792→  color: var(--clr-primary);
+   793→  letter-spacing: var(--ls-wide);
+   794→  text-transform: uppercase;
+   795→  margin-bottom: var(--sp-2);
+   796→}
+   797→
+   798→.hero-actions {
+   799→  display: flex;
+   800→  align-items: center;
+   801→  justify-content: center;
+   802→  gap: var(--sp-4);
+   803→  margin-bottom: var(--sp-6);
+   804→}
+   805→
+   806→.hero-features {
+   807→  display: flex;
+   808→  align-items: center;
+   809→  justify-content: center;
+   810→  gap: var(--sp-3);
+   811→  flex-wrap: wrap;
+   812→  border-top: 1px solid rgba(76, 130, 95, 0.12);
+   813→  padding-top: var(--sp-5);
+   814→}
+   815→
+   816→.hero-feat-item {
+   817→  display: flex;
+   818→  align-items: center;
+   819→  gap: var(--sp-2);
+   820→  padding: var(--sp-1) var(--sp-3);
+   821→  background: rgba(255, 255, 255, 0.6);
+   822→  border: 1px solid rgba(255, 255, 255, 0.8);
+   823→  border-radius: var(--radius-full);
+   824→  font-size: var(--fs-xs);
+   825→  font-weight: var(--fw-semibold);
+   826→  color: var(--clr-text-secondary);
+   827→}
+   828→
+   829→.hero-scroll-hint {
+   830→  position: relative;
+   831→  z-index: 2;
+   832→  display: flex;
+   833→  flex-direction: column;
+   834→  align-items: center;
+   835→  gap: var(--sp-2);
+   836→  margin-top: var(--sp-6);
+   837→}
+   838→
+   839→.hero-scroll-hint span {
+   840→  font-size: 11px;
+   841→  letter-spacing: var(--ls-wider);
+   842→  text-transform: uppercase;
+   843→  color: var(--clr-text-muted);
+   844→  font-weight: var(--fw-medium);
+   845→}
+   846→
+   847→.scroll-line {
+   848→  width: 1px;
+   849→  height: 28px;
+   850→  background: linear-gradient(to bottom, var(--clr-primary), transparent);
+   851→  position: relative;
+   852→  overflow: hidden;
+   853→}
+   854→
+   855→.scroll-line::after {
+   856→  content: '';
+   857→  position: absolute;
+   858→  top: -100%;
+   859→  left: 0;
+   860→  width: 100%;
+   861→  height: 100%;
+   862→  background: var(--clr-primary-dark);
+   863→  animation: scrollDown 2s ease-in-out infinite;
+   864→}
+   865→
+   866→@keyframes scrollDown {
+   867→  0% {
+   868→    top: -100%;
+   869→  }
+   870→
+   871→  100% {
+   872→    top: 100%;
+   873→  }
+   874→}
+   875→
+   876→/* ============================================
+   877→   HOW IT WORKS SECTION — Connected Stepper
+   878→   ============================================ */
+   879→.how-it-works {
+   880→  background: linear-gradient(180deg, var(--clr-cream) 0%, var(--clr-cream-warm) 100%);
+   881→}
+   882→
+   883→.steps-grid {
+   884→  display: grid;
+   885→  grid-template-columns: repeat(4, 1fr);
+   886→  gap: var(--sp-6);
+   887→  position: relative;
+   888→}
+   889→
+   890→.step-card {
+   891→  padding: var(--sp-8) var(--sp-6);
+   892→  text-align: left;
+   893→  display: flex;
+   894→  flex-direction: column;
+   895→  justify-content: space-between;
+   896→  background: rgba(255, 255, 255, 0.75);
+   897→  border: 1px solid rgba(255, 255, 255, 0.9);
+   898→  border-radius: var(--radius-2xl);
+   899→  position: relative;
+   900→  overflow: hidden;
+   901→}
+   902→
+   903→.step-card:hover {
+   904→  transform: translateY(-6px);
+   905→  background: rgba(255, 255, 255, 0.95);
+   906→  box-shadow: var(--glass-shadow-lg);
+   907→  border-color: rgba(76, 130, 95, 0.3);
+   908→}
+   909→
+   910→.step-header {
+   911→  display: flex;
+   912→  align-items: center;
+   913→  justify-content: space-between;
+   914→  margin-bottom: var(--sp-4);
+   915→}
+   916→
+   917→.step-number {
+   918→  font-family: var(--ff-heading);
+   919→  font-size: var(--fs-2xl);
+   920→  font-weight: var(--fw-extrabold);
+   921→  color: var(--clr-primary-muted);
+   922→  line-height: 1;
+   923→}
+   924→
+   925→.step-icon-wrap {
+   926→  width: 48px;
+   927→  height: 48px;
+   928→  display: flex;
+   929→  align-items: center;
+   930→  justify-content: center;
+   931→  font-size: 1.6rem;
+   932→  background: var(--clr-primary-soft);
+   933→  border-radius: var(--radius-lg);
+   934→  box-shadow: 0 4px 12px rgba(76, 130, 95, 0.08);
+   935→}
+   936→
+   937→.step-card h3 {
+   938→  font-size: var(--fs-lg);
+   939→  font-weight: var(--fw-bold);
+   940→  color: var(--clr-text);
+   941→  margin-bottom: var(--sp-2);
+   942→}
+   943→
+   944→.step-card p {
+   945→  font-size: var(--fs-sm);
+   946→  color: var(--clr-text-secondary);
+   947→  line-height: var(--lh-normal);
+   948→  margin-bottom: var(--sp-4);
+   949→}
+   950→
+   951→.step-pill {
+   952→  display: inline-block;
+   953→  font-size: 11px;
+   954→  font-weight: var(--fw-bold);
+   955→  letter-spacing: var(--ls-wide);
+   956→  color: var(--clr-primary);
+   957→  background: var(--clr-primary-soft);
+   958→  padding: var(--sp-1) var(--sp-3);
+   959→  border-radius: var(--radius-full);
+   960→  align-self: flex-start;
+   961→}
+   962→
+   963→/* ============================================
+   964→   PRODUCTS SECTION — 3 Signature Cards Grid
+   965→   ============================================ */
+   966→.products {
+   967→  background: var(--clr-white);
+   968→}
+   969→
+   970→.product-grid {
+   971→  display: grid;
+   972→  grid-template-columns: repeat(3, 1fr);
+   973→  gap: var(--sp-8);
+   974→  max-width: 1080px;
+   975→  margin: 0 auto;
+   976→}
+   977→
+   978→/* Luxury Product Card */
+   979→.product-card {
+   980→  background: var(--clr-cream);
+   981→  border: 1px solid rgba(24, 40, 30, 0.08);
+   982→  border-radius: var(--radius-2xl);
+   983→  overflow: hidden;
+   984→  display: flex;
+   985→  flex-direction: column;
+   986→  transition: all var(--duration-normal) var(--ease-smooth);
+   987→  cursor: pointer;
+   988→  position: relative;
+   989→}
+   990→
+   991→.product-card:hover {
+   992→  transform: translateY(-8px);
+   993→  box-shadow: 0 20px 48px rgba(24, 40, 30, 0.12);
+   994→  border-color: rgba(76, 130, 95, 0.35);
+   995→}
+   996→
+   997→.product-card-visual {
+   998→  height: 220px;
+   999→  position: relative;
+  1000→  display: flex;
+  1001→  align-items: center;
+  1002→  justify-content: center;
+  1003→  overflow: hidden;
+  1004→}
+  1005→
+  1006→.product-tag-badge {
+  1007→  position: absolute;
+  1008→  top: 14px;
+  1009→  left: 14px;
+  1010→  font-size: 10px;
+  1011→  font-weight: var(--fw-bold);
+  1012→  letter-spacing: var(--ls-wide);
+  1013→  text-transform: uppercase;
+  1014→  padding: 3px 10px;
+  1015→  border-radius: var(--radius-full);
+  1016→  background: rgba(255, 255, 255, 0.9);
+  1017→  color: var(--clr-primary-dark);
+  1018→  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  1019→  z-index: 2;
+  1020→}
+  1021→
+  1022→.sheet-count-chip {
+  1023→  position: absolute;
+  1024→  bottom: 12px;
+  1025→  left: 14px;
+  1026→  font-size: 11px;
+  1027→  font-weight: var(--fw-semibold);
+  1028→  padding: 3px 10px;
+  1029→  border-radius: var(--radius-full);
+  1030→  background: rgba(255, 255, 255, 0.82);
+  1031→  backdrop-filter: blur(8px);
+  1032→  color: var(--clr-text-secondary);
+  1033→  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  1034→  z-index: 2;
+  1035→}
+  1036→
+  1037→/* Realistic Paper Soap Stacked Sheets */
+  1038→.paper-soap-stack {
+  1039→  position: relative;
+  1040→  width: 100px;
+  1041→  height: 125px;
+  1042→  transition: transform var(--duration-normal) var(--ease-spring);
+  1043→}
+  1044→
+  1045→.soap-sheet {
+  1046→  position: absolute;
+  1047→  inset: 0;
+  1048→  border-radius: 12px;
+  1049→  border: 1px dashed rgba(0, 0, 0, 0.12);
+  1050→  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  1051→  transition: all var(--duration-normal) var(--ease-spring);
+  1052→}
+  1053→
+  1054→.sheet-back {
+  1055→  transform: rotate(-10deg) translate(-4px, 4px);
+  1056→  opacity: 0.55;
+  1057→}
+  1058→
+  1059→.sheet-mid {
+  1060→  transform: rotate(6deg) translate(3px, -2px);
+  1061→  opacity: 0.8;
+  1062→}
+  1063→
+  1064→.sheet-front {
+  1065→  transform: rotate(0deg);
+  1066→  display: flex;
+  1067→  align-items: center;
+  1068→  justify-content: center;
+  1069→  background: #ffffff !important;
+  1070→  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  1071→}
+  1072→
+  1073→.soap-sheet-inner {
+  1074→  display: flex;
+  1075→  flex-direction: column;
+  1076→  align-items: center;
+  1077→  gap: 4px;
+  1078→}
+  1079→
+  1080→.soap-leaf-emblem {
+  1081→  width: 38px;
+  1082→  height: 38px;
+  1083→}
+  1084→
+  1085→.soap-sheet-text {
+  1086→  font-family: var(--ff-heading);
+  1087→  font-size: 9px;
+  1088→  font-weight: var(--fw-bold);
+  1089→  letter-spacing: var(--ls-widest);
+  1090→  text-transform: uppercase;
+  1091→}
+  1092→
+  1093→/* Card Hover Animation — Fan Out Paper Sheets */
+  1094→.product-card:hover .paper-soap-stack {
+  1095→  transform: scale(1.08);
+  1096→}
+  1097→
+  1098→.product-card:hover .sheet-back {
+  1099→  transform: rotate(-18deg) translate(-10px, 8px);
+  1100→}
+  1101→
+  1102→.product-card:hover .sheet-mid {
+  1103→  transform: rotate(12deg) translate(8px, -4px);
+  1104→}
+  1105→
+  1106→.quick-view-overlay {
+  1107→  position: absolute;
+  1108→  inset: 0;
+  1109→  background: rgba(255, 255, 255, 0.4);
+  1110→  backdrop-filter: blur(4px);
+  1111→  display: flex;
+  1112→  align-items: center;
+  1113→  justify-content: center;
+  1114→  font-size: var(--fs-xs);
+  1115→  font-weight: var(--fw-bold);
+  1116→  color: var(--clr-primary-dark);
+  1117→  opacity: 0;
+  1118→  transition: opacity var(--duration-fast) var(--ease-smooth);
+  1119→  z-index: 3;
+  1120→}
+  1121→
+  1122→.product-card:hover .quick-view-overlay {
+  1123→  opacity: 1;
+  1124→}
+  1125→
+  1126→/* Card Info */
+  1127→.product-card-info {
+  1128→  padding: var(--sp-5);
+  1129→  display: flex;
+  1130→  flex-direction: column;
+  1131→  flex: 1;
+  1132→  background: var(--clr-white);
+  1133→}
+  1134→
+  1135→.product-meta-row {
+  1136→  display: flex;
+  1137→  align-items: center;
+  1138→  justify-content: space-between;
+  1139→  margin-bottom: var(--sp-1);
+  1140→}
+  1141→
+  1142→.product-card-category {
+  1143→  font-size: 11px;
+  1144→  font-weight: var(--fw-bold);
+  1145→  text-transform: uppercase;
+  1146→  letter-spacing: var(--ls-wider);
+  1147→  color: var(--clr-primary);
+  1148→}
+  1149→
+  1150→.product-card-rating {
+  1151→  display: flex;
+  1152→  color: var(--clr-accent);
+  1153→}
+  1154→
+  1155→.product-card-name {
+  1156→  font-size: var(--fs-md);
+  1157→  font-weight: var(--fw-bold);
+  1158→  color: var(--clr-text);
+  1159→  margin-bottom: 2px;
+  1160→}
+  1161→
+  1162→.product-scent-note {
+  1163→  font-size: var(--fs-xs);
+  1164→  font-weight: var(--fw-medium);
+  1165→  color: var(--clr-text-secondary);
+  1166→  margin-bottom: var(--sp-2);
+  1167→}
+  1168→
+  1169→.product-card-desc {
+  1170→  font-size: var(--fs-xs);
+  1171→  color: var(--clr-text-muted);
+  1172→  line-height: var(--lh-normal);
+  1173→  margin-bottom: var(--sp-4);
+  1174→  flex: 1;
+  1175→}
+  1176→
+  1177→.product-card-footer {
+  1178→  display: flex;
+  1179→  align-items: center;
+  1180→  justify-content: space-between;
+  1181→  padding-top: var(--sp-3);
+  1182→  border-top: 1px solid var(--clr-cream);
+  1183→}
+  1184→
+  1185→.product-price-wrap {
+  1186→  display: flex;
+  1187→  flex-direction: column;
+  1188→}
+  1189→
+  1190→.product-card-price {
+  1191→  font-size: var(--fs-md);
+  1192→  font-weight: var(--fw-extrabold);
+  1193→  color: var(--clr-primary-dark);
+  1194→  font-family: var(--ff-heading);
+  1195→}
+  1196→
+  1197→.product-price-unit {
+  1198→  font-size: 10px;
+  1199→  color: var(--clr-text-muted);
+  1200→}
+  1201→
+  1202→.add-to-cart-btn {
+  1203→  padding: var(--sp-2) var(--sp-4);
+  1204→  border-radius: var(--radius-full);
+  1205→  background: var(--clr-primary-soft);
+  1206→  color: var(--clr-primary-dark);
+  1207→  font-size: var(--fs-xs);
+  1208→  font-weight: var(--fw-bold);
+  1209→  border: 1px solid rgba(76, 130, 95, 0.2);
+  1210→  transition: all var(--duration-fast) var(--ease-smooth);
+  1211→}
+  1212→
+  1213→.add-to-cart-btn:hover {
+  1214→  background: var(--clr-primary);
+  1215→  color: var(--clr-white);
+  1216→  transform: scale(1.04);
+  1217→}
+  1218→
+  1219→/* ============================================
+  1220→   ABOUT SECTION — Interactive Specs
+  1221→   ============================================ */
+  1222→.about {
+  1223→  background: linear-gradient(180deg, var(--clr-white) 0%, var(--clr-cream) 100%);
+  1224→}
+  1225→
+  1226→.about-grid {
+  1227→  display: grid;
+  1228→  grid-template-columns: 1fr 1.15fr;
+  1229→  gap: var(--sp-12);
+  1230→  align-items: center;
+  1231→}
+  1232→
+  1233→.specs-card {
+  1234→  padding: var(--sp-8);
+  1235→  background: rgba(255, 255, 255, 0.85);
+  1236→  border: 1px solid rgba(255, 255, 255, 0.95);
+  1237→  box-shadow: var(--glass-shadow-lg);
+  1238→}
+  1239→
+  1240→.specs-badge {
+  1241→  font-size: 11px;
+  1242→  font-weight: var(--fw-bold);
+  1243→  letter-spacing: var(--ls-widest);
+  1244→  color: var(--clr-primary);
+  1245→  display: inline-block;
+  1246→  margin-bottom: var(--sp-2);
+  1247→}
+  1248→
+  1249→.specs-header h3 {
+  1250→  font-size: var(--fs-xl);
+  1251→  margin-bottom: var(--sp-6);
+  1252→}
+  1253→
+  1254→.specs-list {
+  1255→  display: flex;
+  1256→  flex-direction: column;
+  1257→  gap: var(--sp-4);
+  1258→  margin-bottom: var(--sp-6);
+  1259→}
+  1260→
+  1261→.spec-row {
+  1262→  display: flex;
+  1263→  align-items: center;
+  1264→  gap: var(--sp-4);
+  1265→  padding: var(--sp-3) var(--sp-4);
+  1266→  background: var(--clr-cream);
+  1267→  border-radius: var(--radius-lg);
+  1268→  border: 1px solid rgba(76, 130, 95, 0.08);
+  1269→}
+  1270→
+  1271→.spec-icon {
+  1272→  font-size: 1.5rem;
+  1273→  width: 40px;
+  1274→  height: 40px;
+  1275→  display: flex;
+  1276→  align-items: center;
+  1277→  justify-content: center;
+  1278→  background: var(--clr-white);
+  1279→  border-radius: var(--radius-md);
+  1280→  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  1281→}
+  1282→
+  1283→.spec-info strong {
+  1284→  display: block;
+  1285→  font-size: var(--fs-sm);
+  1286→  color: var(--clr-text);
+  1287→}
+  1288→
+  1289→.spec-info span {
+  1290→  font-size: var(--fs-xs);
+  1291→  color: var(--clr-text-secondary);
+  1292→}
+  1293→
+  1294→.specs-footer-pill {
+  1295→  font-size: var(--fs-xs);
+  1296→  font-weight: var(--fw-semibold);
+  1297→  color: var(--clr-primary-dark);
+  1298→  background: var(--clr-primary-soft);
+  1299→  padding: var(--sp-2) var(--sp-4);
+  1300→  border-radius: var(--radius-full);
+  1301→  text-align: center;
+  1302→}
+  1303→
+  1304→.about-text {
+  1305→  font-size: var(--fs-base);
+  1306→  color: var(--clr-text-secondary);
+  1307→  line-height: var(--lh-relaxed);
+  1308→  margin-bottom: var(--sp-4);
+  1309→}
+  1310→
+  1311→.values-grid {
+  1312→  display: grid;
+  1313→  grid-template-columns: 1fr 1fr;
+  1314→  gap: var(--sp-4);
+  1315→  margin-top: var(--sp-6);
+  1316→}
+  1317→
+  1318→.value-card {
+  1319→  padding: var(--sp-5);
+  1320→  background: var(--clr-white);
+  1321→  border: 1px solid var(--clr-cream-dark);
+  1322→  border-radius: var(--radius-xl);
+  1323→  transition: all var(--duration-fast) var(--ease-smooth);
+  1324→}
+  1325→
+  1326→.value-card:hover {
+  1327→  border-color: var(--clr-primary-muted);
+  1328→  box-shadow: 0 8px 24px rgba(76, 130, 95, 0.08);
+  1329→}
+  1330→
+  1331→.value-card-icon {
+  1332→  font-size: 1.8rem;
+  1333→  margin-bottom: var(--sp-2);
+  1334→}
+  1335→
+  1336→.value-card h4 {
+  1337→  font-size: var(--fs-sm);
+  1338→  font-weight: var(--fw-bold);
+  1339→  margin-bottom: 2px;
+  1340→}
+  1341→
+  1342→.value-card p {
+  1343→  font-size: var(--fs-xs);
+  1344→  color: var(--clr-text-secondary);
+  1345→}
+  1346→
+  1347→/* ============================================
+  1348→   TESTIMONIALS SECTION — Infinite Marquee
+  1349→   ============================================ */
+  1350→.testimonials {
+  1351→  background: var(--clr-cream-warm);
+  1352→  overflow: hidden;
+  1353→}
+  1354→
+  1355→.testimonial-marquee {
+  1356→  width: 100%;
+  1357→  overflow: hidden;
+  1358→  mask-image: linear-gradient(
+  1359→    to right,
+  1360→    transparent 0%,
+  1361→    black 8%,
+  1362→    black 92%,
+  1363→    transparent 100%
+  1364→  );
+  1365→  -webkit-mask-image: linear-gradient(
+  1366→    to right,
+  1367→    transparent 0%,
+  1368→    black 8%,
+  1369→    black 92%,
+  1370→    transparent 100%
+  1371→  );
+  1372→}
+  1373→
+  1374→.testimonial-track {
+  1375→  display: flex;
+  1376→  gap: var(--sp-6);
+  1377→  width: max-content;
+  1378→  animation: marqueeScroll 45s linear infinite;
+  1379→}
+  1380→
+  1381→.testimonial-marquee:hover .testimonial-track {
+  1382→  animation-play-state: paused;
+  1383→}
+  1384→
+  1385→@keyframes marqueeScroll {
+  1386→  0% {
+  1387→    transform: translateX(0);
+  1388→  }
+  1389→  100% {
+  1390→    transform: translateX(-50%);
+  1391→  }
+  1392→}
+  1393→
+  1394→.testimonial-card {
+  1395→  flex-shrink: 0;
+  1396→  width: 360px;
+  1397→  padding: var(--sp-6);
+  1398→  display: flex;
+  1399→  flex-direction: column;
+  1400→  justify-content: space-between;
+  1401→  background: rgba(255, 255, 255, 0.85);
+  1402→  border-radius: var(--radius-2xl);
+  1403→  border: 1px solid rgba(255, 255, 255, 0.9);
+  1404→  backdrop-filter: blur(12px);
+  1405→  -webkit-backdrop-filter: blur(12px);
+  1406→  box-shadow: 0 8px 24px rgba(24, 40, 30, 0.06);
+  1407→  transition: box-shadow var(--duration-fast) var(--ease-smooth);
+  1408→}
+  1409→
+  1410→.testimonial-card:hover {
+  1411→  box-shadow: 0 12px 32px rgba(24, 40, 30, 0.12);
+  1412→}
+  1413→
+  1414→.testimonial-stars {
+  1415→  color: var(--clr-accent);
+  1416→  margin-bottom: var(--sp-3);
+  1417→}
+  1418→
+  1419→.testimonial-text {
+  1420→  font-size: var(--fs-sm);
+  1421→  color: var(--clr-text);
+  1422→  line-height: var(--lh-relaxed);
+  1423→  font-style: italic;
+  1424→  margin-bottom: var(--sp-5);
+  1425→}
+  1426→
+  1427→.testimonial-author {
+  1428→  display: flex;
+  1429→  align-items: center;
+  1430→  gap: var(--sp-3);
+  1431→}
+  1432→
+  1433→.testimonial-avatar {
+  1434→  width: 40px;
+  1435→  height: 40px;
+  1436→  border-radius: 50%;
+  1437→  background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-dark));
+  1438→  color: var(--clr-white);
+  1439→  display: flex;
+  1440→  align-items: center;
+  1441→  justify-content: center;
+  1442→  font-weight: var(--fw-bold);
+  1443→  font-size: var(--fs-sm);
+  1444→  flex-shrink: 0;
+  1445→}
+  1446→
+  1447→.testimonial-name {
+  1448→  font-size: var(--fs-sm);
+  1449→  font-weight: var(--fw-bold);
+  1450→  color: var(--clr-text);
+  1451→}
+  1452→
+  1453→.testimonial-role {
+  1454→  font-size: 11px;
+  1455→  color: var(--clr-text-muted);
+  1456→}
+  1457→
+  1458→/* ============================================
+  1459→   CART DRAWER & FREE SHIPPING PROGRESS
+  1460→   ============================================ */
+  1461→.cart-overlay {
+  1462→  position: fixed;
+  1463→  inset: 0;
+  1464→  background: rgba(15, 25, 18, 0.4);
+  1465→  backdrop-filter: blur(8px);
+  1466→  -webkit-backdrop-filter: blur(8px);
+  1467→  z-index: var(--z-overlay);
+  1468→  opacity: 0;
+  1469→  pointer-events: none;
+  1470→  transition: opacity var(--duration-normal) var(--ease-smooth);
+  1471→}
+  1472→
+  1473→.cart-overlay.active {
+  1474→  opacity: 1;
+  1475→  pointer-events: all;
+  1476→}
+  1477→
+  1478→.cart-drawer {
+  1479→  position: fixed;
+  1480→  top: 0;
+  1481→  right: 0;
+  1482→  bottom: 0;
+  1483→  width: 440px;
+  1484→  max-width: 100vw;
+  1485→  background: var(--clr-white);
+  1486→  z-index: calc(var(--z-overlay) + 1);
+  1487→  display: flex;
+  1488→  flex-direction: column;
+  1489→  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+  1490→  transform: translateX(100%);
+  1491→  transition: transform var(--duration-normal) var(--ease-smooth);
+  1492→}
+  1493→
+  1494→.cart-drawer.active {
+  1495→  transform: translateX(0);
+  1496→}
+  1497→
+  1498→.cart-drawer-header {
+  1499→  display: flex;
+  1500→  align-items: center;
+  1501→  justify-content: space-between;
+  1502→  padding: var(--sp-5) var(--sp-6);
+  1503→  border-bottom: 1px solid var(--clr-cream-dark);
+  1504→}
+  1505→
+  1506→.cart-header-title {
+  1507→  display: flex;
+  1508→  align-items: center;
+  1509→  gap: var(--sp-3);
+  1510→}
+  1511→
+  1512→.cart-count-pill {
+  1513→  font-size: 11px;
+  1514→  font-weight: var(--fw-bold);
+  1515→  color: var(--clr-primary-dark);
+  1516→  background: var(--clr-primary-soft);
+  1517→  padding: 2px 8px;
+  1518→  border-radius: var(--radius-full);
+  1519→}
+  1520→
+  1521→.cart-drawer-close {
+  1522→  width: 36px;
+  1523→  height: 36px;
+  1524→  display: flex;
+  1525→  align-items: center;
+  1526→  justify-content: center;
+  1527→  border-radius: 50%;
+  1528→  background: var(--clr-cream);
+  1529→  font-size: var(--fs-md);
+  1530→  color: var(--clr-text-secondary);
+  1531→}
+  1532→
+  1533→/* Free Shipping Bar */
+  1534→.cart-shipping-bar {
+  1535→  padding: var(--sp-3) var(--sp-6);
+  1536→  background: var(--clr-cream);
+  1537→  border-bottom: 1px solid var(--clr-cream-dark);
+  1538→}
+  1539→
+  1540→.shipping-bar-text {
+  1541→  font-size: var(--fs-xs);
+  1542→  color: var(--clr-text);
+  1543→  margin-bottom: 6px;
+  1544→}
+  1545→
+  1546→.shipping-progress-track {
+  1547→  width: 100%;
+  1548→  height: 6px;
+  1549→  background: var(--clr-cream-dark);
+  1550→  border-radius: var(--radius-full);
+  1551→  overflow: hidden;
+  1552→}
+  1553→
+  1554→.shipping-progress-fill {
+  1555→  height: 100%;
+  1556→  border-radius: var(--radius-full);
+  1557→  transition: width 0.4s var(--ease-out);
+  1558→}
+  1559→
+  1560→.cart-drawer-items {
+  1561→  flex: 1;
+  1562→  overflow-y: auto;
+  1563→  padding: var(--sp-6);
+  1564→  display: flex;
+  1565→  flex-direction: column;
+  1566→  gap: var(--sp-4);
+  1567→}
+  1568→
+  1569→.cart-empty {
+  1570→  text-align: center;
+  1571→  margin: auto 0;
+  1572→  padding: var(--sp-8);
+  1573→}
+  1574→
+  1575→.cart-empty-icon {
+  1576→  font-size: 3rem;
+  1577→  margin-bottom: var(--sp-3);
+  1578→}
+  1579→
+  1580→.cart-empty h4 {
+  1581→  font-size: var(--fs-md);
+  1582→  margin-bottom: var(--sp-2);
+  1583→}
+  1584→
+  1585→.cart-empty p {
+  1586→  font-size: var(--fs-xs);
+  1587→  color: var(--clr-text-secondary);
+  1588→}
+  1589→
+  1590→.cart-item {
+  1591→  display: flex;
+  1592→  align-items: center;
+  1593→  gap: var(--sp-3);
+  1594→  padding: var(--sp-3);
+  1595→  background: var(--clr-cream);
+  1596→  border-radius: var(--radius-lg);
+  1597→}
+  1598→
+  1599→.cart-item-visual {
+  1600→  width: 54px;
+  1601→  height: 54px;
+  1602→  border-radius: var(--radius-md);
+  1603→  display: flex;
+  1604→  align-items: center;
+  1605→  justify-content: center;
+  1606→  flex-shrink: 0;
+  1607→}
+  1608→
+  1609→.cart-item-info {
+  1610→  flex: 1;
+  1611→}
+  1612→
+  1613→.cart-item-name {
+  1614→  font-size: var(--fs-sm);
+  1615→  font-weight: var(--fw-bold);
+  1616→  color: var(--clr-text);
+  1617→}
+  1618→
+  1619→.cart-item-variant {
+  1620→  display: block;
+  1621→  font-size: 11px;
+  1622→  color: var(--clr-text-muted);
+  1623→}
+  1624→
+  1625→.cart-item-price {
+  1626→  font-size: var(--fs-xs);
+  1627→  font-weight: var(--fw-extrabold);
+  1628→  color: var(--clr-primary-dark);
+  1629→  margin: 2px 0 6px;
+  1630→}
+  1631→
+  1632→.cart-item-controls {
+  1633→  display: flex;
+  1634→  align-items: center;
+  1635→  gap: var(--sp-2);
+  1636→}
+  1637→
+  1638→.cart-qty-btn {
+  1639→  width: 24px;
+  1640→  height: 24px;
+  1641→  display: flex;
+  1642→  align-items: center;
+  1643→  justify-content: center;
+  1644→  border-radius: 50%;
+  1645→  background: var(--clr-white);
+  1646→  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  1647→  font-size: 12px;
+  1648→  font-weight: var(--fw-bold);
+  1649→}
+  1650→
+  1651→.cart-item-qty {
+  1652→  font-size: var(--fs-xs);
+  1653→  font-weight: var(--fw-bold);
+  1654→  min-width: 16px;
+  1655→  text-align: center;
+  1656→}
+  1657→
+  1658→.cart-item-remove {
+  1659→  padding: var(--sp-2);
+  1660→  color: var(--clr-text-muted);
+  1661→  font-size: 13px;
+  1662→}
+  1663→
+  1664→.cart-item-remove:hover {
+  1665→  color: var(--clr-danger);
+  1666→}
+  1667→
+  1668→.cart-drawer-footer {
+  1669→  padding: var(--sp-5) var(--sp-6);
+  1670→  border-top: 1px solid var(--clr-cream-dark);
+  1671→  background: var(--clr-white);
+  1672→}
+  1673→
+  1674→.cart-subtotal {
+  1675→  display: flex;
+  1676→  align-items: center;
+  1677→  justify-content: space-between;
+  1678→  margin-bottom: var(--sp-4);
+  1679→}
+  1680→
+  1681→.cart-subtotal-label {
+  1682→  font-size: var(--fs-sm);
+  1683→  color: var(--clr-text-secondary);
+  1684→}
+  1685→
+  1686→.cart-subtotal-value {
+  1687→  font-family: var(--ff-heading);
+  1688→  font-size: var(--fs-xl);
+  1689→  font-weight: var(--fw-extrabold);
+  1690→  color: var(--clr-primary-dark);
+  1691→}
+  1692→
+  1693→.cart-drawer-footer .btn {
+  1694→  width: 100%;
+  1695→}
+  1696→
+  1697→.cart-secure-note {
+  1698→  font-size: 11px;
+  1699→  color: var(--clr-text-muted);
+  1700→  text-align: center;
+  1701→  margin-top: var(--sp-3);
+  1702→}
+  1703→
+  1704→/* ============================================
+  1705→   MODAL DETAIL
+  1706→   ============================================ */
+  1707→.modal-overlay {
+  1708→  position: fixed;
+  1709→  inset: 0;
+  1710→  background: rgba(15, 25, 18, 0.55);
+  1711→  backdrop-filter: blur(12px);
+  1712→  -webkit-backdrop-filter: blur(12px);
+  1713→  z-index: var(--z-modal);
+  1714→  display: flex;
+  1715→  align-items: center;
+  1716→  justify-content: center;
+  1717→  padding: var(--sp-4);
+  1718→  opacity: 0;
+  1719→  pointer-events: none;
+  1720→  transition: opacity var(--duration-normal) var(--ease-smooth);
+  1721→}
+  1722→
+  1723→.modal-overlay.active {
+  1724→  opacity: 1;
+  1725→  pointer-events: all;
+  1726→}
+  1727→
+  1728→.modal-content {
+  1729→  width: 100%;
+  1730→  max-width: 760px;
+  1731→  background: var(--clr-white);
+  1732→  border-radius: var(--radius-2xl);
+  1733→  overflow: hidden;
+  1734→  display: grid;
+  1735→  grid-template-columns: 1fr 1.2fr;
+  1736→  box-shadow: var(--glass-shadow-lg);
+  1737→  transform: scale(0.92);
+  1738→  transition: transform var(--duration-normal) var(--ease-spring);
+  1739→}
+  1740→
+  1741→.modal-overlay.active .modal-content {
+  1742→  transform: scale(1);
+  1743→}
+  1744→
+  1745→.modal-visual {
+  1746→  position: relative;
+  1747→  display: flex;
+  1748→  align-items: center;
+  1749→  justify-content: center;
+  1750→  padding: var(--sp-8);
+  1751→  min-height: 280px;
+  1752→}
+  1753→
+  1754→.modal-soap-stack {
+  1755→  width: 140px;
+  1756→  height: 175px;
+  1757→}
+  1758→
+  1759→.modal-close {
+  1760→  position: absolute;
+  1761→  top: 14px;
+  1762→  right: 14px;
+  1763→  width: 36px;
+  1764→  height: 36px;
+  1765→  display: flex;
+  1766→  align-items: center;
+  1767→  justify-content: center;
+  1768→  border-radius: 50%;
+  1769→  background: rgba(255, 255, 255, 0.85);
+  1770→  color: var(--clr-text);
+  1771→  font-size: var(--fs-md);
+  1772→  z-index: 5;
+  1773→}
+  1774→
+  1775→.modal-body {
+  1776→  padding: var(--sp-8);
+  1777→  display: flex;
+  1778→  flex-direction: column;
+  1779→  justify-content: space-between;
+  1780→}
+  1781→
+  1782→.modal-category {
+  1783→  font-size: 11px;
+  1784→  font-weight: var(--fw-bold);
+  1785→  text-transform: uppercase;
+  1786→  letter-spacing: var(--ls-wider);
+  1787→  color: var(--clr-primary);
+  1788→  margin-bottom: 4px;
+  1789→}
+  1790→
+  1791→.modal-title {
+  1792→  font-size: var(--fs-2xl);
+  1793→  margin-bottom: var(--sp-2);
+  1794→}
+  1795→
+  1796→.modal-rating {
+  1797→  display: flex;
+  1798→  align-items: center;
+  1799→  gap: var(--sp-2);
+  1800→  color: var(--clr-accent);
+  1801→  font-size: var(--fs-xs);
+  1802→  margin-bottom: var(--sp-4);
+  1803→}
+  1804→
+  1805→.modal-desc {
+  1806→  font-size: var(--fs-sm);
+  1807→  color: var(--clr-text-secondary);
+  1808→  line-height: var(--lh-relaxed);
+  1809→  margin-bottom: var(--sp-6);
+  1810→}
+  1811→
+  1812→.modal-price {
+  1813→  font-family: var(--ff-heading);
+  1814→  font-size: var(--fs-2xl);
+  1815→  font-weight: var(--fw-extrabold);
+  1816→  color: var(--clr-primary-dark);
+  1817→  margin-bottom: var(--sp-6);
+  1818→}
+  1819→
+  1820→.modal-price small {
+  1821→  font-size: var(--fs-xs);
+  1822→  font-weight: var(--fw-regular);
+  1823→  color: var(--clr-text-muted);
+  1824→}
+  1825→
+  1826→.modal-actions {
+  1827→  display: flex;
+  1828→  align-items: center;
+  1829→  gap: var(--sp-4);
+  1830→}
+  1831→
+  1832→.quantity-control {
+  1833→  display: flex;
+  1834→  align-items: center;
+  1835→  background: var(--clr-cream);
+  1836→  border-radius: var(--radius-full);
+  1837→  padding: 4px 8px;
+  1838→  border: 1px solid var(--clr-cream-dark);
+  1839→}
+  1840→
+  1841→.quantity-btn {
+  1842→  width: 32px;
+  1843→  height: 32px;
+  1844→  display: flex;
+  1845→  align-items: center;
+  1846→  justify-content: center;
+  1847→  font-size: var(--fs-md);
+  1848→  font-weight: var(--fw-bold);
+  1849→  color: var(--clr-primary-dark);
+  1850→}
+  1851→
+  1852→.quantity-value {
+  1853→  font-size: var(--fs-sm);
+  1854→  font-weight: var(--fw-bold);
+  1855→  min-width: 28px;
+  1856→  text-align: center;
+  1857→}
+  1858→
+  1859→.modal-actions .btn-primary {
+  1860→  flex: 1;
+  1861→}
+  1862→
+  1863→/* ============================================
+  1864→   FOOTER
+  1865→   ============================================ */
+  1866→.site-footer {
+  1867→  background: var(--clr-black);
+  1868→  color: var(--clr-white);
+  1869→  padding: var(--sp-16) 0 var(--sp-8);
+  1870→}
+  1871→
+  1872→.footer-grid {
+  1873→  display: grid;
+  1874→  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  1875→  gap: var(--sp-10);
+  1876→  margin-bottom: var(--sp-12);
+  1877→}
+  1878→
+  1879→.footer-brand .header-logo-text {
+  1880→  color: var(--clr-white);
+  1881→  margin-bottom: var(--sp-3);
+  1882→}
+  1883→
+  1884→.footer-brand .header-logo-text span {
+  1885→  color: var(--clr-accent);
+  1886→}
+  1887→
+  1888→.footer-brand p {
+  1889→  font-size: var(--fs-sm);
+  1890→  color: rgba(255, 255, 255, 0.6);
+  1891→  line-height: var(--lh-relaxed);
+  1892→}
+  1893→
+  1894→.footer-heading {
+  1895→  font-size: var(--fs-sm);
+  1896→  font-weight: var(--fw-bold);
+  1897→  letter-spacing: var(--ls-wide);
+  1898→  color: var(--clr-white);
+  1899→  margin-bottom: var(--sp-4);
+  1900→}
+  1901→
+  1902→.footer-links li {
+  1903→  margin-bottom: var(--sp-2);
+  1904→}
+  1905→
+  1906→.footer-links a {
+  1907→  font-size: var(--fs-sm);
+  1908→  color: rgba(255, 255, 255, 0.65);
+  1909→  transition: color var(--duration-fast) var(--ease-smooth);
+  1910→}
+  1911→
+  1912→.footer-links a:hover {
+  1913→  color: var(--clr-accent-light);
+  1914→}
+  1915→
+  1916→.footer-newsletter p {
+  1917→  font-size: var(--fs-xs);
+  1918→  color: rgba(255, 255, 255, 0.6);
+  1919→  margin-bottom: var(--sp-3);
+  1920→}
+  1921→
+  1922→.newsletter-form {
+  1923→  display: flex;
+  1924→  gap: var(--sp-2);
+  1925→}
+  1926→
+  1927→.newsletter-input {
+  1928→  flex: 1;
+  1929→  padding: var(--sp-2) var(--sp-4);
+  1930→  border-radius: var(--radius-full);
+  1931→  background: rgba(255, 255, 255, 0.1);
+  1932→  border: 1px solid rgba(255, 255, 255, 0.15);
+  1933→  color: var(--clr-white);
+  1934→  font-size: var(--fs-xs);
+  1935→}
+  1936→
+  1937→.newsletter-input::placeholder {
+  1938→  color: rgba(255, 255, 255, 0.4);
+  1939→}
+  1940→
+  1941→.footer-bottom {
+  1942→  display: flex;
+  1943→  align-items: center;
+  1944→  justify-content: space-between;
+  1945→  padding-top: var(--sp-6);
+  1946→  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  1947→  font-size: var(--fs-xs);
+  1948→  color: rgba(255, 255, 255, 0.5);
+  1949→}
+  1950→
+  1951→.footer-socials {
+  1952→  display: flex;
+  1953→  gap: var(--sp-3);
+  1954→}
+  1955→
+  1956→.footer-social-link {
+  1957→  font-size: 1.2rem;
+  1958→  transition: transform var(--duration-fast) var(--ease-smooth);
+  1959→}
+  1960→
+  1961→.footer-social-link:hover {
+  1962→  transform: scale(1.2);
+  1963→}
+  1964→
+  1965→/* ============================================
+  1966→   TOAST
+  1967→   ============================================ */
+  1968→.toast {
+  1969→  position: fixed;
+  1970→  bottom: 24px;
+  1971→  left: 50%;
+  1972→  transform: translateX(-50%) translateY(100px);
+  1973→  background: var(--clr-primary-dark);
+  1974→  color: var(--clr-white);
+  1975→  padding: var(--sp-3) var(--sp-6);
+  1976→  border-radius: var(--radius-full);
+  1977→  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  1978→  z-index: var(--z-toast);
+  1979→  display: flex;
+  1980→  align-items: center;
+  1981→  gap: var(--sp-2);
+  1982→  font-size: var(--fs-sm);
+  1983→  font-weight: var(--fw-medium);
+  1984→  opacity: 0;
+  1985→  transition: all var(--duration-normal) var(--ease-spring);
+  1986→  pointer-events: none;
+  1987→}
+  1988→
+  1989→.toast.show {
+  1990→  transform: translateX(-50%) translateY(0);
+  1991→  opacity: 1;
+  1992→}
+  1993→
+  1994→/* ============================================
+  1995→   SCROLL REVEAL ANIMATIONS (Fail-safe visibility)
+  1996→   ============================================ */
+  1997→.reveal,
+  1998→.reveal-left,
+  1999→.reveal-right {
+  2000→  opacity: 1;
+
+[showing lines 1-2000 of 2412; use offset=2001 with limit to continue reading]

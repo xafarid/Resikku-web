@@ -1,0 +1,617 @@
+     1→<!DOCTYPE html>
+     2→<html lang="id">
+     3→
+     4→<head>
+     5→  <meta charset="UTF-8">
+     6→  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     7→  <meta name="description"
+     8→    content="Resikku Essentials — Sabun kertas organik premium untuk kebersihan keluarga. Praktis, higienis, dan ramah lingkungan.">
+     9→  <meta name="keywords" content="sabun kertas, paper soap, organic soap, resikku, hygiene, kebersihan">
+    10→  <meta property="og:title" content="Resikku Essentials — Paper Soap Premium">
+    11→  <meta property="og:description"
+    12→    content="Sabun kertas organik premium untuk kebersihan keluarga. Praktis, higienis, dan ramah lingkungan.">
+    13→  <meta property="og:type" content="website">
+    14→  <title>Resikku Essentials — Premium Paper Soap</title>
+    15→  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    16→  <link rel="stylesheet" href="index.css">
+    17→</head>
+    18→
+    19→<body>
+    20→
+    21→  <!-- ========== HEADER (Floating Island) ========== -->
+    22→  <header class="site-header" id="site-header">
+    23→    <div class="container header-container">
+    24→      <div class="header-inner">
+    25→        <!-- Logo -->
+    26→        <a href="#" class="header-logo" id="header-logo">
+    27→          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    28→            <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="2.5" fill="none" />
+    29→            <path d="M50 18C50 18 72 42 72 58C72 70.2 62.15 80 50 80C37.85 80 28 70.2 28 58C28 42 50 18 50 18Z"
+    30→              stroke="currentColor" stroke-width="2.5" fill="none" />
+    31→            <path d="M50 50C50 50 38 60 38 66C38 72.6 43.4 78 50 78C56.6 78 62 72.6 62 66C62 60 50 50 50 50Z"
+    32→              stroke="currentColor" stroke-width="2.5" fill="none" />
+    33→          </svg>
+    34→          <div class="header-logo-text">
+    35→            Resikku
+    36→            <span>Essentials</span>
+    37→          </div>
+    38→        </a>
+    39→
+    40→        <!-- Navigation -->
+    41→        <nav class="header-nav" id="header-nav">
+    42→          <a href="#hero" class="active" data-nav="hero">Beranda</a>
+    43→          <a href="#how-it-works" data-nav="how-it-works">Cara Pakai</a>
+    44→          <a href="#products" data-nav="products">Produk</a>
+    45→          <a href="#about" data-nav="about">Keunggulan</a>
+    46→          <a href="#testimonials" data-nav="testimonials">Ulasan</a>
+    47→        </nav>
+    48→
+    49→        <!-- Actions -->
+    50→        <div class="header-actions">
+    51→          <button class="cart-toggle" id="cart-toggle" aria-label="Buka keranjang">
+    52→            <svg viewBox="0 0 24 24">
+    53→              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+    54→              <line x1="3" y1="6" x2="21" y2="6" />
+    55→              <path d="M16 10a4 4 0 01-8 0" />
+    56→            </svg>
+    57→            <span class="cart-badge" id="cart-badge">0</span>
+    58→          </button>
+    59→          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+    60→            <span></span>
+    61→            <span></span>
+    62→            <span></span>
+    63→          </button>
+    64→        </div>
+    65→      </div>
+    66→    </div>
+    67→  </header>
+    68→
+    69→  <!-- ========== HERO SECTION ========== -->
+    70→  <section class="hero" id="hero">
+    71→    <!-- Video Background with smooth blending -->
+    72→    <div class="hero-video-wrap">
+    73→      <video class="hero-video" autoplay muted loop playsinline poster="logo-og.jpg">
+    74→        <source src="background_home.mp4" type="video/mp4">
+    75→        <source src="background_home.mov" type="video/quicktime">
+    76→      </video>
+    77→      <div class="hero-video-overlay"></div>
+    78→    </div>
+    79→
+    80→    <div class="hero-content">
+    81→      <!-- Luxury Floating Glass Banner -->
+    82→      <div class="hero-glass-card">
+    83→        <div class="hero-badge">
+    84→          <span class="hero-badge-dot"></span>
+    85→          <span>100% Organik • Zero Waste Paper Soap</span>
+    86→        </div>
+    87→
+    88→        <h1 class="hero-title">
+    89→          Cuci Tangan Praktis dalam <span class="text-accent">Selembar Kertas</span>
+    90→        </h1>
+    91→        <h3 class="hero-sub">
+    92→          MBG Friendly, Traveling, Hiking & Outdoor Activity
+    93→        </h3>
+    94→        <p class="hero-subtitle">
+    95→          Higienis di mana saja, kapan saja. Sabun kertas organik yang lembut di kulit dan ramah lingkungan.
+    96→        </p>
+    97→
+    98→        <div class="hero-actions">
+    99→          <a href="#products" class="btn btn-primary btn-lg">
+   100→            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   101→              stroke-linecap="round" stroke-linejoin="round">
+   102→              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+   103→              <line x1="3" y1="6" x2="21" y2="6" />
+   104→              <path d="M16 10a4 4 0 01-8 0" />
+   105→            </svg>
+   106→            <span>Cek Koleksi</span>
+   107→          </a>
+   108→          <a href="#how-it-works" class="btn btn-secondary btn-lg">
+   109→            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   110→              stroke-linecap="round" stroke-linejoin="round">
+   111→              <path d="M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4L12 2z" />
+   112→            </svg>
+   113→            <span>Cara Pakai</span>
+   114→          </a>
+   115→        </div>
+   116→
+   117→        <!-- Quick Trust Badges -->
+   118→        <div class="hero-features">
+   119→          <div class="hero-feat-item">
+   120→            <svg class="feat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   121→              stroke-linecap="round" stroke-linejoin="round">
+   122→              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 21 2c-1 4.5-1.5 6-3.1 11.2A7 7 0 0 1 11 20z" />
+   123→              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+   124→            </svg>
+   125→            <span>100% Ramah Lingkungan</span>
+   126→          </div>
+   127→          <div class="hero-feat-item">
+   128→            <svg class="feat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   129→              stroke-linecap="round" stroke-linejoin="round">
+   130→              <circle cx="12" cy="12" r="10" />
+   131→              <polyline points="12 6 12 12 16 14" />
+   132→            </svg>
+   133→            <span>Larut &lt; 5 Detik</span>
+   134→          </div>
+   135→          <div class="hero-feat-item">
+   136→            <svg class="feat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   137→              stroke-linecap="round" stroke-linejoin="round">
+   138→              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+   139→              <polyline points="9 12 11 14 15 10" />
+   140→            </svg>
+   141→            <span>Aman Kulit Sensitif</span>
+   142→          </div>
+   143→        </div>
+   144→      </div>
+   145→    </div>
+   146→
+   147→    <div class="hero-scroll-hint">
+   148→      <span>Gulir untuk eksplorasi</span>
+   149→      <div class="scroll-line"></div>
+   150→    </div>
+   151→  </section>
+   152→
+   153→  <!-- ========== HOW IT WORKS (CARA PAKAI) ========== -->
+   154→  <section class="how-it-works section" id="how-it-works">
+   155→    <div class="container">
+   156→      <div class="section-header reveal">
+   157→        <p class="section-label">Praktis &amp; Higienis</p>
+   158→        <h2 class="section-title">4 Langkah Mudah Menggunakan Sabun Kertas</h2>
+   159→        <p class="section-subtitle">
+   160→          Dapatkan busa melimpah dan kebersihan higienis di mana saja tanpa repot membawa botol cair.
+   161→        </p>
+   162→      </div>
+   163→
+   164→      <div class="steps-grid">
+   165→        <div class="step-card glass-card reveal stagger-1">
+   166→          <div class="step-header">
+   167→            <span class="step-number">01</span>
+   168→            <div class="step-icon-wrap">
+   169→              <svg class="step-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   170→                stroke-linecap="round" stroke-linejoin="round">
+   171→                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+   172→                <polyline points="14 2 14 8 20 8" />
+   173→                <line x1="16" y1="13" x2="8" y2="13" />
+   174→                <line x1="16" y1="17" x2="8" y2="17" />
+   175→              </svg>
+   176→            </div>
+   177→          </div>
+   178→          <h3>Ambil 1 Lembar</h3>
+   179→          <p>Buka wadah saku dan ambil satu lembar sabun kertas dengan jari yang kering.</p>
+   180→          <div class="step-pill">Kering &amp; Ringan</div>
+   181→        </div>
+   182→
+   183→        <div class="step-card glass-card reveal stagger-2">
+   184→          <div class="step-header">
+   185→            <span class="step-number">02</span>
+   186→            <div class="step-icon-wrap">
+   187→              <svg class="step-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   188→                stroke-linecap="round" stroke-linejoin="round">
+   189→                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+   190→              </svg>
+   191→            </div>
+   192→          </div>
+   193→          <h3>Basahi Air</h3>
+   194→          <p>Teteskan sedikit air bersih ke atas telapak tangan dan lembaran sabun.</p>
+   195→          <div class="step-pill">Larut Cepat</div>
+   196→        </div>
+   197→
+   198→        <div class="step-card glass-card reveal stagger-3">
+   199→          <div class="step-header">
+   200→            <span class="step-number">03</span>
+   201→            <div class="step-icon-wrap">
+   202→              <svg class="step-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   203→                stroke-linecap="round" stroke-linejoin="round">
+   204→                <circle cx="7" cy="17" r="5" />
+   205→                <circle cx="17" cy="17" r="5" />
+   206→                <circle cx="12" cy="8" r="4" />
+   207→                <path d="M12 2v2" />
+   208→                <path d="M19 5l-1.5 1.5" />
+   209→              </svg>
+   210→            </div>
+   211→          </div>
+   212→          <h3>Gosok Berbusa</h3>
+   213→          <p>Gosok kedua telapak tangan selama 20 detik hingga menghasilkan busa lembut melimpah.</p>
+   214→          <div class="step-pill">Busa Lembut &amp; Wangi</div>
+   215→        </div>
+   216→
+   217→        <div class="step-card glass-card reveal stagger-4">
+   218→          <div class="step-header">
+   219→            <span class="step-number">04</span>
+   220→            <div class="step-icon-wrap">
+   221→              <svg class="step-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   222→                stroke-linecap="round" stroke-linejoin="round">
+   223→                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+   224→                <polyline points="22 4 12 14.01 9 11.01" />
+   225→              </svg>
+   226→            </div>
+   227→          </div>
+   228→          <h3>Bilas Bersih</h3>
+   229→          <p>Bilas dengan air mengalir. 100% larut tanpa meninggalkan ampas atau residu plastik.</p>
+   230→          <div class="step-pill">Zero Waste</div>
+   231→        </div>
+   232→      </div>
+   233→    </div>
+   234→  </section>
+   235→
+   236→  <!-- ========== PRODUCTS ========== -->
+   237→  <section class="products section" id="products">
+   238→    <div class="container">
+   239→      <div class="section-header reveal">
+   240→        <p class="section-label">Katalog Pilihan</p>
+   241→        <h2 class="section-title">3 Varian Sabun Kertas Eksklusif</h2>
+   242→        <p class="section-subtitle">
+   243→          Diformulasikan dengan ekstrak minyak esensial murni untuk kelembutan, kepraktisan, dan aroma alami sepanjang
+   244→          hari.
+   245→        </p>
+   246→      </div>
+   247→
+   248→      <!-- Product grid — filled by JS (3 signature products) -->
+   249→      <div class="product-grid" id="product-grid"></div>
+   250→    </div>
+   251→  </section>
+   252→
+   253→  <!-- ========== ABOUT / BRAND STORY ========== -->
+   254→  <section class="about section" id="about">
+   255→    <div class="container">
+   256→      <div class="about-grid">
+   257→        <!-- Interactive Specs Left Column -->
+   258→        <div class="about-visual reveal-left">
+   259→          <div class="specs-card glass-card">
+   260→            <div class="specs-header">
+   261→              <span class="specs-badge">
+   262→                <svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   263→                  stroke-linecap="round" stroke-linejoin="round">
+   264→                  <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 21 2c-1 4.5-1.5 6-3.1 11.2A7 7 0 0 1 11 20z" />
+   265→                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+   266→                </svg>
+   267→                SPESIFIKASI PREMIUM
+   268→              </span>
+   269→              <h3>Anatomi Sabun Kertas Resikku</h3>
+   270→            </div>
+   271→
+   272→            <div class="specs-list">
+   273→              <div class="spec-row">
+   274→                <div class="spec-icon">
+   275→                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   276→                    stroke-linejoin="round">
+   277→                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+   278→                    <polyline points="2 17 12 22 22 17" />
+   279→                    <polyline points="2 12 12 17 22 12" />
+   280→                  </svg>
+   281→                </div>
+   282→                <div class="spec-info">
+   283→                  <strong>Ketebalan 0.2 mm</strong>
+   284→                  <span>Lembaran ultra-tipis yang dirancang presisi</span>
+   285→                </div>
+   286→              </div>
+   287→              <div class="spec-row">
+   288→                <div class="spec-icon">
+   289→                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   290→                    stroke-linejoin="round">
+   291→                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 21 2c-1 4.5-1.5 6-3.1 11.2A7 7 0 0 1 11 20z" />
+   292→                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+   293→                  </svg>
+   294→                </div>
+   295→                <div class="spec-info">
+   296→                  <strong>100% Ekstrak Botani</strong>
+   297→                  <span>Minyak esensial murni tanpa paraben &amp; SLS</span>
+   298→                </div>
+   299→              </div>
+   300→              <div class="spec-row">
+   301→                <div class="spec-icon">
+   302→                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   303→                    stroke-linejoin="round">
+   304→                    <circle cx="12" cy="12" r="10" />
+   305→                    <polyline points="12 6 12 12 16 14" />
+   306→                  </svg>
+   307→                </div>
+   308→                <div class="spec-info">
+   309→                  <strong>Daya Larut &lt; 5 Detik</strong>
+   310→                  <span>Langsung lumer saat terkena air tanpa gumpalan</span>
+   311→                </div>
+   312→              </div>
+   313→              <div class="spec-row">
+   314→                <div class="spec-icon">
+   315→                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   316→                    stroke-linejoin="round">
+   317→                    <path
+   318→                      d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+   319→                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+   320→                    <line x1="12" y1="22.08" x2="12" y2="12" />
+   321→                  </svg>
+   322→                </div>
+   323→                <div class="spec-info">
+   324→                  <strong>Berat 15 Gram</strong>
+   325→                  <span>Mudah diselipkan di saku, dompet, atau pouch</span>
+   326→                </div>
+   327→              </div>
+   328→            </div>
+   329→
+   330→            <div class="specs-footer-pill">
+   331→              <svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   332→                stroke-linecap="round" stroke-linejoin="round">
+   333→                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+   334→                <polyline points="9 12 11 14 15 10" />
+   335→              </svg>
+   336→              <span>Telah Teruji Secara Dermatologis &amp; Ramah Lingkungan</span>
+   337→            </div>
+   338→          </div>
+   339→        </div>
+   340→
+   341→        <!-- Content Right Column -->
+   342→        <div class="about-content reveal-right">
+   343→          <p class="section-label">Filosofi Kami</p>
+   344→          <h2 class="section-title">Inovasi Bersih Tanpa Sampah Plastik</h2>
+   345→          <p class="about-text">
+   346→            Resikku Essentials diciptakan untuk menjawab keresahan kita saat bepergian: sabun cair yang rentan bocor,
+   347→            sabun batangan yang licin &amp; kotor, serta botol plastik sekali pakai yang mencemari bumi.
+   348→          </p>
+   349→          <p class="about-text">
+   350→            Setiap lembar sabun kertas kami dibuat dengan teknologi enkapsulasi busa alami. Cukup selembar untuk sekali
+   351→            cuci tangan atau mandi yang segar, higienis, dan 100% biodegradable.
+   352→          </p>
+   353→
+   354→          <div class="values-grid">
+   355→            <div class="value-card reveal stagger-1">
+   356→              <div class="value-card-icon">
+   357→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   358→                  stroke-linejoin="round">
+   359→                  <path d="M7 20h10" />
+   360→                  <path d="M10 20c0-4 1.5-7 4-9" />
+   361→                  <path d="M12 11c1-4 4-7 8-7-1 4-4 7-8 7z" />
+   362→                </svg>
+   363→              </div>
+   364→              <h4>100% Alami</h4>
+   365→              <p>Ekstrak tumbuhan organik yang lembut di kulit</p>
+   366→            </div>
+   367→            <div class="value-card reveal stagger-2">
+   368→              <div class="value-card-icon">
+   369→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   370→                  stroke-linejoin="round">
+   371→                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+   372→                  <path d="M12 8v4" />
+   373→                  <path d="M12 16h.01" />
+   374→                </svg>
+   375→              </div>
+   376→              <h4>Hypoallergenic</h4>
+   377→              <p>Aman untuk kulit sensitif, anak-anak, hingga bayi</p>
+   378→            </div>
+   379→            <div class="value-card reveal stagger-3">
+   380→              <div class="value-card-icon">
+   381→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   382→                  stroke-linejoin="round">
+   383→                  <polyline points="23 4 23 10 17 10" />
+   384→                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+   385→                </svg>
+   386→              </div>
+   387→              <h4>Zero Residue</h4>
+   388→              <p>Larut sempurna tanpa ampas atau sampah plastik</p>
+   389→            </div>
+   390→            <div class="value-card reveal stagger-4">
+   391→              <div class="value-card-icon">
+   392→                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   393→                  stroke-linejoin="round">
+   394→                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+   395→                  <polyline points="9 12 11 14 15 10" />
+   396→                </svg>
+   397→              </div>
+   398→              <h4>Anti Bocor</h4>
+   399→              <p>Bebas cemas dari cairan tumpah di dalam tas travel</p>
+   400→            </div>
+   401→          </div>
+   402→        </div>
+   403→      </div>
+   404→    </div>
+   405→  </section>
+   406→
+   407→  <!-- ========== TESTIMONIALS ========== -->
+   408→  <section class="testimonials section" id="testimonials">
+   409→    <div class="container">
+   410→      <div class="section-header reveal">
+   411→        <p class="section-label">Ulasan Pelanggan</p>
+   412→        <h2 class="section-title">Apa Kata Mereka</h2>
+   413→        <p class="section-subtitle">
+   414→          Ribuan keluarga sudah merasakan manfaat sabun kertas Resikku.
+   415→        </p>
+   416→      </div>
+   417→    </div>
+   418→
+   419→    <!-- Full-width marquee (overflows container) -->
+   420→    <div class="testimonial-marquee">
+   421→      <div class="testimonial-track" id="testimonial-track">
+   422→        <!-- Filled by JS (duplicated for seamless loop) -->
+   423→      </div>
+   424→    </div>
+   425→  </section>
+   426→
+   427→  <!-- ========== FOOTER ========== -->
+   428→  <footer class="site-footer" id="footer">
+   429→    <div class="container">
+   430→      <div class="footer-grid">
+   431→        <!-- Brand -->
+   432→        <div class="footer-brand">
+   433→          <div class="header-logo-text" style="display: inline-block;">
+   434→            Resikku
+   435→            <span>Essentials</span>
+   436→          </div>
+   437→          <p>
+   438→            Sabun kertas organik premium untuk kebersihan keluarga.
+   439→            Praktis, higienis, dan ramah lingkungan.
+   440→          </p>
+   441→        </div>
+   442→
+   443→        <!-- Quick Links -->
+   444→        <div>
+   445→          <h4 class="footer-heading">Menu</h4>
+   446→          <ul class="footer-links">
+   447→            <li><a href="#hero">Beranda</a></li>
+   448→            <li><a href="#products">Produk</a></li>
+   449→            <li><a href="#about">Tentang Kami</a></li>
+   450→            <li><a href="#testimonials">Ulasan</a></li>
+   451→          </ul>
+   452→        </div>
+   453→
+   454→        <!-- Info -->
+   455→        <div>
+   456→          <h4 class="footer-heading">Info</h4>
+   457→          <ul class="footer-links">
+   458→            <li><a href="#">Cara Pakai</a></li>
+   459→            <li><a href="#">FAQ</a></li>
+   460→            <li><a href="#">Kebijakan Privasi</a></li>
+   461→            <li><a href="#">Hubungi Kami</a></li>
+   462→          </ul>
+   463→        </div>
+   464→
+   465→        <!-- Newsletter -->
+   466→        <div class="footer-newsletter">
+   467→          <h4 class="footer-heading">Newsletter</h4>
+   468→          <p>Dapatkan info produk terbaru & promo eksklusif langsung ke email kamu.</p>
+   469→          <form class="newsletter-form" id="newsletter-form">
+   470→            <input type="email" class="newsletter-input" placeholder="Email kamu..." required>
+   471→            <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
+   472→          </form>
+   473→        </div>
+   474→      </div>
+   475→
+   476→      <div class="footer-bottom">
+   477→        <p>&copy; 2026 Resikku Essentials. All rights reserved.</p>
+   478→        <div class="footer-socials">
+   479→          <!-- Instagram -->
+   480→          <a href="#" class="footer-social-link" aria-label="Instagram">
+   481→            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   482→              stroke-linejoin="round">
+   483→              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+   484→              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+   485→              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+   486→            </svg>
+   487→          </a>
+   488→          <!-- WhatsApp -->
+   489→          <a href="https://wa.me/6281234567890" target="_blank" class="footer-social-link" aria-label="WhatsApp">
+   490→            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   491→              stroke-linejoin="round">
+   492→              <path
+   493→                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+   494→            </svg>
+   495→          </a>
+   496→          <!-- TikTok / Music -->
+   497→          <a href="#" class="footer-social-link" aria-label="TikTok">
+   498→            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+   499→              stroke-linejoin="round">
+   500→              <path d="M9 18V5l12-2v13" />
+   501→              <circle cx="6" cy="18" r="3" />
+   502→              <circle cx="18" cy="16" r="3" />
+   503→            </svg>
+   504→          </a>
+   505→        </div>
+   506→      </div>
+   507→    </div>
+   508→  </footer>
+   509→
+   510→  <!-- ========== PRODUCT DETAIL MODAL ========== -->
+   511→  <div class="modal-overlay" id="product-modal">
+   512→    <div class="modal-content">
+   513→      <div class="modal-visual" id="modal-visual">
+   514→        <button class="modal-close" id="modal-close" aria-label="Tutup">✕</button>
+   515→        <span class="product-icon" id="modal-icon"></span>
+   516→      </div>
+   517→      <div class="modal-body">
+   518→        <p class="modal-category" id="modal-category"></p>
+   519→        <h3 class="modal-title" id="modal-title"></h3>
+   520→        <div class="modal-rating" id="modal-rating"></div>
+   521→        <p class="modal-desc" id="modal-desc"></p>
+   522→        <p class="modal-price" id="modal-price"></p>
+   523→        <div class="modal-actions">
+   524→          <div class="quantity-control">
+   525→            <button class="quantity-btn" id="qty-minus" aria-label="Kurangi">−</button>
+   526→            <span class="quantity-value" id="qty-value">1</span>
+   527→            <button class="quantity-btn" id="qty-plus" aria-label="Tambah">+</button>
+   528→          </div>
+   529→          <button class="btn btn-primary btn-lg" id="modal-add-cart">
+   530→            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   531→              stroke-linecap="round" stroke-linejoin="round">
+   532→              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+   533→              <line x1="3" y1="6" x2="21" y2="6" />
+   534→              <path d="M16 10a4 4 0 01-8 0" />
+   535→            </svg>
+   536→            <span>Tambah ke Keranjang</span>
+   537→          </button>
+   538→        </div>
+   539→      </div>
+   540→    </div>
+   541→  </div>
+   542→
+   543→  <!-- ========== CART DRAWER ========== -->
+   544→  <div class="cart-overlay" id="cart-overlay"></div>
+   545→  <aside class="cart-drawer" id="cart-drawer">
+   546→    <div class="cart-drawer-header">
+   547→      <div class="cart-header-title">
+   548→        <svg class="cart-header-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   549→          stroke-linecap="round" stroke-linejoin="round">
+   550→          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+   551→          <line x1="3" y1="6" x2="21" y2="6" />
+   552→          <path d="M16 10a4 4 0 01-8 0" />
+   553→        </svg>
+   554→        <h3>Keranjang Belanja</h3>
+   555→        <span class="cart-count-pill" id="cart-count-pill">0 Produk</span>
+   556→      </div>
+   557→      <button class="cart-drawer-close" id="cart-close" aria-label="Tutup keranjang">✕</button>
+   558→    </div>
+   559→
+   560→    <!-- Free shipping progress bar -->
+   561→    <div class="cart-shipping-bar" id="cart-shipping-bar">
+   562→      <div class="shipping-bar-text" id="shipping-bar-text">
+   563→        <svg class="shipping-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   564→          stroke-linecap="round" stroke-linejoin="round">
+   565→          <rect x="1" y="3" width="15" height="13" />
+   566→          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+   567→          <circle cx="5.5" cy="18.5" r="2.5" />
+   568→          <circle cx="18.5" cy="18.5" r="2.5" />
+   569→        </svg>
+   570→        <span>Beli <strong>Rp 100.000</strong> lagi untuk <strong>Gratis Ongkir!</strong></span>
+   571→      </div>
+   572→      <div class="shipping-progress-track">
+   573→        <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+   574→      </div>
+   575→    </div>
+   576→
+   577→    <div class="cart-drawer-items" id="cart-items">
+   578→      <!-- Filled by JS -->
+   579→    </div>
+   580→    <div class="cart-drawer-footer" id="cart-footer">
+   581→      <div class="cart-subtotal">
+   582→        <span class="cart-subtotal-label">Subtotal Belanja</span>
+   583→        <span class="cart-subtotal-value" id="cart-subtotal">Rp 0</span>
+   584→      </div>
+   585→      <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-primary btn-lg" id="cart-wa-btn">
+   586→        <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   587→          stroke-linecap="round" stroke-linejoin="round">
+   588→          <path
+   589→            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+   590→        </svg>
+   591→        <span>Pesan Cepat via WhatsApp</span>
+   592→      </a>
+   593→      <p class="cart-secure-note">
+   594→        <svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+   595→          stroke-linecap="round" stroke-linejoin="round">
+   596→          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+   597→          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+   598→        </svg>
+   599→        Bebas biaya admin • Konsultasi via WhatsApp
+   600→      </p>
+   601→    </div>
+   602→  </aside>
+   603→
+   604→  <!-- ========== TOAST ========== -->
+   605→  <div class="toast" id="toast">
+   606→    <svg class="toast-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+   607→      stroke-linecap="round" stroke-linejoin="round">
+   608→      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+   609→      <polyline points="22 4 12 14.01 9 11.01" />
+   610→    </svg>
+   611→    <span class="toast-text" id="toast-text"></span>
+   612→  </div>
+   613→
+   614→  <script src="app.js"></script>
+   615→</body>
+   616→
+   617→</html>

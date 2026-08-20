@@ -1,0 +1,927 @@
+     1→@import "tailwindcss";
+     2→@import "tw-animate-css";
+     3→
+     4→@custom-variant dark (&:is(.dark *));
+     5→
+     6→@theme inline {
+     7→  /* ---- shadcn aliases (kept for compatibility) ---- */
+     8→  --color-background: var(--background);
+     9→  --color-foreground: var(--foreground);
+    10→  --font-sans: var(--font-body);
+    11→  --font-mono: var(--font-body);
+    12→  --color-sidebar-ring: var(--sidebar-ring);
+    13→  --color-sidebar-border: var(--sidebar-border);
+    14→  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    15→  --color-sidebar-accent: var(--sidebar-accent);
+    16→  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    17→  --color-sidebar-primary: var(--sidebar-primary);
+    18→  --color-sidebar-foreground: var(--sidebar-foreground);
+    19→  --color-sidebar: var(--sidebar);
+    20→  --color-chart-5: var(--chart-5);
+    21→  --color-chart-4: var(--chart-4);
+    22→  --color-chart-3: var(--chart-3);
+    23→  --color-chart-2: var(--chart-2);
+    24→  --color-chart-1: var(--chart-1);
+    25→  --color-ring: var(--ring);
+    26→  --color-input: var(--input);
+    27→  --color-border: var(--border);
+    28→  --color-destructive: var(--destructive);
+    29→  --color-accent-foreground: var(--accent-foreground);
+    30→  --color-accent: var(--accent);
+    31→  --color-muted-foreground: var(--muted-foreground);
+    32→  --color-muted: var(--muted);
+    33→  --color-secondary-foreground: var(--secondary-foreground);
+    34→  --color-secondary: var(--secondary);
+    35→  --color-primary-foreground: var(--primary-foreground);
+    36→  --color-primary: var(--primary);
+    37→  --color-popover-foreground: var(--popover-foreground);
+    38→  --color-popover: var(--popover);
+    39→  --color-card-foreground: var(--card-foreground);
+    40→  --color-card: var(--card);
+    41→  --radius-sm: calc(var(--radius) - 4px);
+    42→  --radius-md: calc(var(--radius) - 2px);
+    43→  --radius-lg: var(--radius);
+    44→  --radius-xl: calc(var(--radius) + 4px);
+    45→
+    46→  /* ---- RESIKKU Brand Palette ---- */
+    47→  --color-sage: hsl(145 38% 32%);
+    48→  --color-sage-light: hsl(145 32% 48%);
+    49→  --color-sage-dark: hsl(145 45% 18%);
+    50→  --color-sage-muted: hsl(145 22% 75%);
+    51→  --color-sage-soft: hsl(145 35% 94%);
+    52→  --color-gold: hsl(38 70% 54%);
+    53→  --color-gold-light: hsl(38 65% 82%);
+    54→  --color-gold-dark: hsl(38 75% 40%);
+    55→  --color-cream: #fbf9f5;
+    56→  --color-cream-warm: #f4f1e8;
+    57→  --color-cream-dark: #e8e4d8;
+    58→  --color-ink: hsl(150 20% 14%);
+    59→  --color-ink-secondary: hsl(150 18% 28%);
+    60→  --color-ink-muted: hsl(150 12% 48%);
+    61→
+    62→  /* Font families */
+    63→  --font-heading: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    64→  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    65→}
+    66→
+    67→:root {
+    68→  /* shadcn-compatible defaults (light) */
+    69→  --radius: 0.625rem;
+    70→  --background: #fbf9f5;
+    71→  --foreground: hsl(150 20% 14%);
+    72→  --card: #ffffff;
+    73→  --card-foreground: hsl(150 20% 14%);
+    74→  --popover: #ffffff;
+    75→  --popover-foreground: hsl(150 20% 14%);
+    76→  --primary: hsl(145 38% 32%);
+    77→  --primary-foreground: #fbf9f5;
+    78→  --secondary: hsl(145 35% 94%);
+    79→  --secondary-foreground: hsl(145 45% 18%);
+    80→  --muted: hsl(145 35% 94%);
+    81→  --muted-foreground: hsl(150 10% 42%);
+    82→  --accent: hsl(38 70% 54%);
+    83→  --accent-foreground: #ffffff;
+    84→  --destructive: hsl(0 65% 55%);
+    85→  --border: hsl(150 15% 90%);
+    86→  --input: hsl(150 15% 90%);
+    87→  --ring: hsl(145 38% 32%);
+    88→  --chart-1: hsl(145 38% 32%);
+    89→  --chart-2: hsl(38 70% 54%);
+    90→  --chart-3: hsl(145 32% 48%);
+    91→  --chart-4: hsl(270 40% 60%);
+    92→  --chart-5: hsl(45 70% 55%);
+    93→  --sidebar: #ffffff;
+    94→  --sidebar-foreground: hsl(150 20% 14%);
+    95→  --sidebar-primary: hsl(145 38% 32%);
+    96→  --sidebar-primary-foreground: #fbf9f5;
+    97→  --sidebar-accent: hsl(145 35% 94%);
+    98→  --sidebar-accent-foreground: hsl(145 45% 18%);
+    99→  --sidebar-border: hsl(150 15% 90%);
+   100→  --sidebar-ring: hsl(145 38% 32%);
+   101→
+   102→  /* RESIKKU design tokens */
+   103→  --glass-bg: rgba(255, 255, 255, 0.55);
+   104→  --glass-bg-heavy: rgba(255, 255, 255, 0.75);
+   105→  --glass-bg-light: rgba(255, 255, 255, 0.35);
+   106→  --glass-border: rgba(255, 255, 255, 0.85);
+   107→  --glass-border-subtle: rgba(76, 130, 95, 0.14);
+   108→  --glass-blur: blur(16px);
+   109→  --glass-blur-heavy: blur(28px);
+   110→  --glass-shadow: 0 12px 36px rgba(24, 40, 30, 0.06);
+   111→  --glass-shadow-lg: 0 24px 56px rgba(24, 40, 30, 0.12);
+   112→
+   113→  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+   114→  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+   115→  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+   116→}
+   117→
+   118→.dark {
+   119→  --background: hsl(150 30% 8%);
+   120→  --foreground: #fbf9f5;
+   121→  --card: hsl(150 25% 12%);
+   122→  --card-foreground: #fbf9f5;
+   123→  --popover: hsl(150 25% 12%);
+   124→  --popover-foreground: #fbf9f5;
+   125→  --primary: hsl(145 38% 42%);
+   126→  --primary-foreground: hsl(150 30% 8%);
+   127→  --secondary: hsl(150 20% 16%);
+   128→  --secondary-foreground: #fbf9f5;
+   129→  --muted: hsl(150 20% 16%);
+   130→  --muted-foreground: hsl(150 10% 65%);
+   131→  --accent: hsl(38 70% 58%);
+   132→  --accent-foreground: hsl(150 30% 8%);
+   133→  --destructive: hsl(0 65% 60%);
+   134→  --border: hsl(150 15% 20%);
+   135→  --input: hsl(150 15% 20%);
+   136→  --ring: hsl(145 38% 42%);
+   137→  --sidebar: hsl(150 25% 12%);
+   138→  --sidebar-foreground: #fbf9f5;
+   139→  --sidebar-primary: hsl(145 38% 42%);
+   140→  --sidebar-primary-foreground: hsl(150 30% 8%);
+   141→  --sidebar-accent: hsl(150 20% 16%);
+   142→  --sidebar-accent-foreground: #fbf9f5;
+   143→  --sidebar-border: hsl(150 15% 20%);
+   144→  --sidebar-ring: hsl(145 38% 42%);
+   145→
+   146→  --glass-bg: rgba(255, 255, 255, 0.06);
+   147→  --glass-bg-heavy: rgba(255, 255, 255, 0.1);
+   148→  --glass-bg-light: rgba(255, 255, 255, 0.03);
+   149→  --glass-border: rgba(255, 255, 255, 0.18);
+   150→  --glass-border-subtle: rgba(255, 255, 255, 0.1);
+   151→}
+   152→
+   153→@layer base {
+   154→  * {
+   155→    @apply border-border outline-ring/50;
+   156→  }
+   157→  html {
+   158→    scroll-behavior: smooth;
+   159→  }
+   160→  body {
+   161→    @apply bg-background text-foreground;
+   162→    font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+   163→  }
+   164→  h1, h2, h3, h4, h5, h6 {
+   165→    font-family: var(--font-heading), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+   166→    letter-spacing: -0.025em;
+   167→  }
+   168→  ::selection {
+   169→    background: hsl(145 38% 32% / 0.18);
+   170→    color: hsl(145 45% 18%);
+   171→  }
+   172→}
+   173→
+   174→/* ============== Utility components ============== */
+   175→@layer components {
+   176→  /* ---- Glassmorphism ---- */
+   177→  .glass-card {
+   178→    background: var(--glass-bg);
+   179→    backdrop-filter: var(--glass-blur);
+   180→    -webkit-backdrop-filter: var(--glass-blur);
+   181→    border: 1px solid var(--glass-border);
+   182→    box-shadow: var(--glass-shadow);
+   183→    border-radius: var(--radius-lg);
+   184→  }
+   185→  .glass-heavy {
+   186→    background: var(--glass-bg-heavy);
+   187→    backdrop-filter: var(--glass-blur-heavy);
+   188→    -webkit-backdrop-filter: var(--glass-blur-heavy);
+   189→    border: 1px solid var(--glass-border);
+   190→    box-shadow: var(--glass-shadow-lg);
+   191→  }
+   192→  .glass-light {
+   193→    background: var(--glass-bg-light);
+   194→    backdrop-filter: blur(8px);
+   195→    -webkit-backdrop-filter: blur(8px);
+   196→    border: 1px solid var(--glass-border-subtle);
+   197→  }
+   198→
+   199→  /* ---- Container ---- */
+   200→  .container-rsk {
+   201→    width: 100%;
+   202→    max-width: 1200px;
+   203→    margin-inline: auto;
+   204→    padding-inline: 1.5rem;
+   205→  }
+   206→  @media (min-width: 768px) {
+   207→    .container-rsk { padding-inline: 2rem; }
+   208→  }
+   209→
+   210→  /* ---- Section base ---- */
+   211→  .section-rsk {
+   212→    padding-block: 5rem;
+   213→    position: relative;
+   214→  }
+   215→  @media (min-width: 768px) {
+   216→    .section-rsk { padding-block: 7rem; }
+   217→  }
+   218→
+   219→  /* ---- Buttons ---- */
+   220→  .btn-rsk {
+   221→    display: inline-flex;
+   222→    align-items: center;
+   223→    justify-content: center;
+   224→    gap: 0.5rem;
+   225→    padding: 0.75rem 1.5rem;
+   226→    border-radius: 9999px;
+   227→    font-weight: 600;
+   228→    font-size: 0.9375rem;
+   229→    line-height: 1;
+   230→    transition: all 0.3s var(--ease-smooth);
+   231→    cursor: pointer;
+   232→    white-space: nowrap;
+   233→    user-select: none;
+   234→  }
+   235→  .btn-rsk-primary {
+   236→    background: linear-gradient(135deg, hsl(145 38% 32%), hsl(145 45% 22%));
+   237→    color: #fbf9f5;
+   238→    box-shadow: 0 8px 20px rgba(45, 90, 63, 0.25);
+   239→  }
+   240→  .btn-rsk-primary:hover {
+   241→    transform: translateY(-2px);
+   242→    box-shadow: 0 14px 28px rgba(45, 90, 63, 0.35);
+   243→  }
+   244→  .btn-rsk-secondary {
+   245→    background: var(--glass-bg);
+   246→    backdrop-filter: blur(12px);
+   247→    -webkit-backdrop-filter: blur(12px);
+   248→    color: hsl(145 38% 32%);
+   249→    border: 1.5px solid hsl(145 38% 32% / 0.2);
+   250→  }
+   251→  .btn-rsk-secondary:hover {
+   252→    background: var(--glass-bg-heavy);
+   253→    border-color: hsl(145 38% 32% / 0.4);
+   254→    transform: translateY(-2px);
+   255→  }
+   256→  .btn-rsk-gold {
+   257→    background: linear-gradient(135deg, hsl(38 70% 54%), hsl(38 75% 44%));
+   258→    color: #ffffff;
+   259→    box-shadow: 0 8px 20px rgba(201, 148, 46, 0.3);
+   260→  }
+   261→  .btn-rsk-gold:hover {
+   262→    transform: translateY(-2px);
+   263→    box-shadow: 0 14px 28px rgba(201, 148, 46, 0.4);
+   264→  }
+   265→
+   266→  /* ---- Section label pill ---- */
+   267→  .section-label {
+   268→    display: inline-flex;
+   269→    align-items: center;
+   270→    gap: 0.5rem;
+   271→    padding: 0.4rem 1rem;
+   272→    border-radius: 9999px;
+   273→    background: hsl(145 35% 94%);
+   274→    color: hsl(145 45% 22%);
+   275→    font-size: 0.75rem;
+   276→    font-weight: 700;
+   277→    letter-spacing: 0.12em;
+   278→    text-transform: uppercase;
+   279→  }
+   280→
+   281→  /* ---- Marquee animation ---- */
+   282→  .marquee-track {
+   283→    display: flex;
+   284→    gap: 1.5rem;
+   285→    width: max-content;
+   286→    animation: marquee-scroll 40s linear infinite;
+   287→  }
+   288→  .marquee-track:hover {
+   289→    animation-play-state: paused;
+   290→  }
+   291→  @keyframes marquee-scroll {
+   292→    0% { transform: translateX(0); }
+   293→    100% { transform: translateX(-50%); }
+   294→  }
+   295→
+   296→  /* ---- Bounce for cart badge ---- */
+   297→  .badge-bounce {
+   298→    animation: badge-bounce 0.6s var(--ease-spring);
+   299→  }
+   300→  @keyframes badge-bounce {
+   301→    0%, 100% { transform: scale(1); }
+   302→    50% { transform: scale(1.4); }
+   303→  }
+   304→
+   305→  /* ---- Scroll line ---- */
+   306→  .scroll-line-anim {
+   307→    width: 2px;
+   308→    height: 50px;
+   309→    background: linear-gradient(to bottom, transparent, hsl(145 38% 32%));
+   310→    animation: scroll-pulse 2s ease-in-out infinite;
+   311→  }
+   312→  @keyframes scroll-pulse {
+   313→    0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+   314→    50% { opacity: 1; transform: scaleY(1); }
+   315→  }
+   316→
+   317→  /* ---- Slow spin (decorative) ---- */
+   318→  .spin-slow {
+   319→    animation: spin-slow 30s linear infinite;
+   320→  }
+   321→  @keyframes spin-slow {
+   322→    to { transform: rotate(360deg); }
+   323→  }
+   324→
+   325→  /* ---- Hover lift ---- */
+   326→  .lift-on-hover {
+   327→    transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
+   328→    border: 1px solid transparent;
+   329→  }
+   330→  .lift-on-hover:hover {
+   331→    transform: translateY(-6px);
+   332→    border-color: hsl(145 38% 32% / 0.18);
+   333→  }
+   334→
+   335→  /* ---- Card with stronger boundary ---- */
+   336→  .card-rsk {
+   337→    background: var(--glass-bg-heavy);
+   338→    backdrop-filter: var(--glass-blur-heavy);
+   339→    -webkit-backdrop-filter: var(--glass-blur-heavy);
+   340→    border: 1px solid hsl(145 38% 32% / 0.08);
+   341→    box-shadow: 0 8px 28px rgba(24, 40, 30, 0.06);
+   342→    border-radius: var(--radius-lg);
+   343→    transition: all 0.4s var(--ease-smooth);
+   344→  }
+   345→  .card-rsk:hover {
+   346→    transform: translateY(-6px);
+   347→    border-color: hsl(145 38% 32% / 0.22);
+   348→    box-shadow: 0 18px 44px rgba(24, 40, 30, 0.14);
+   349→  }
+   350→
+   351→  /* ---- Input focus ring (newsletter/testimonial) ---- */
+   352→  .input-rsk {
+   353→    width: 100%;
+   354→    padding: 0.75rem 1.25rem;
+   355→    border-radius: 9999px;
+   356→    background: rgba(255, 255, 255, 0.9);
+   357→    border: 1.5px solid hsl(145 38% 32% / 0.15);
+   358→    color: var(--color-ink);
+   359→    font-size: 0.9375rem;
+   360→    transition: all 0.25s var(--ease-smooth);
+   361→  }
+   362→  .input-rsk::placeholder { color: hsl(150 12% 55%); }
+   363→  .input-rsk:focus {
+   364→    outline: none;
+   365→    border-color: hsl(145 38% 32% / 0.55);
+   366→    box-shadow: 0 0 0 4px hsl(145 38% 32% / 0.1);
+   367→    background: #ffffff;
+   368→  }
+   369→
+   370→  /* ---- Shimmer effect for buttons ---- */
+   371→  .btn-shimmer {
+   372→    position: relative;
+   373→    overflow: hidden;
+   374→  }
+   375→  .btn-shimmer::after {
+   376→    content: "";
+   377→    position: absolute;
+   378→    top: 0;
+   379→    left: -120%;
+   380→    width: 80%;
+   381→    height: 100%;
+   382→    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+   383→    transform: skewX(-20deg);
+   384→    transition: left 0.7s var(--ease-smooth);
+   385→  }
+   386→  .btn-shimmer:hover::after { left: 130%; }
+   387→
+   388→  /* ---- Glow pulse for important CTAs ---- */
+   389→  .glow-pulse {
+   390→    animation: glow-pulse 2.4s ease-in-out infinite;
+   391→  }
+   392→  @keyframes glow-pulse {
+   393→    0%, 100% { box-shadow: 0 8px 20px rgba(45, 90, 63, 0.25), 0 0 0 0 rgba(45, 90, 63, 0.35); }
+   394→    50% { box-shadow: 0 8px 20px rgba(45, 90, 63, 0.25), 0 0 0 8px rgba(45, 90, 63, 0); }
+   395→  }
+   396→
+   397→  /* ---- Subtle float for decorative elements ---- */
+   398→  .float-slow {
+   399→    animation: float-slow 6s ease-in-out infinite;
+   400→  }
+   401→  @keyframes float-slow {
+   402→    0%, 100% { transform: translateY(0); }
+   403→    50% { transform: translateY(-10px); }
+   404→  }
+   405→
+   406→  /* ---- Gradient text ---- */
+   407→  .text-gradient-gold {
+   408→    background: linear-gradient(135deg, hsl(38 80% 50%), hsl(38 75% 40%));
+   409→    -webkit-background-clip: text;
+   410→    background-clip: text;
+   411→    -webkit-text-fill-color: transparent;
+   412→  }
+   413→  .text-gradient-sage {
+   414→    background: linear-gradient(135deg, hsl(145 38% 32%), hsl(145 32% 48%));
+   415→    -webkit-background-clip: text;
+   416→    background-clip: text;
+   417→    -webkit-text-fill-color: transparent;
+   418→  }
+   419→
+   420→  /* ---- Star rating ---- */
+   421→  .star-filled { color: hsl(38 80% 50%); }
+   422→  .star-empty { color: hsl(150 10% 80%); }
+   423→
+   424→  /* ---- Custom scrollbar (long lists) ---- */
+   425→  .scroll-rsk::-webkit-scrollbar { width: 6px; height: 6px; }
+   426→  .scroll-rsk::-webkit-scrollbar-track { background: transparent; }
+   427→  .scroll-rsk::-webkit-scrollbar-thumb {
+   428→    background: hsl(145 22% 70%);
+   429→    border-radius: 9999px;
+   430→  }
+   431→  .scroll-rsk::-webkit-scrollbar-thumb:hover { background: hsl(145 30% 55%); }
+   432→
+   433→  /* ---- Dark mode scrollbar ---- */
+   434→  .dark .scroll-rsk::-webkit-scrollbar-track { background: transparent; }
+   435→  .dark .scroll-rsk::-webkit-scrollbar-thumb { background: hsl(145 15% 35%); }
+   436→  .dark .scroll-rsk::-webkit-scrollbar-thumb:hover { background: hsl(145 20% 45%); }
+   437→
+   438→  /* ---- Hero video overlay ---- */
+   439→  .hero-video-overlay {
+   440→    position: absolute;
+   441→    inset: 0;
+   442→    background:
+   443→      radial-gradient(ellipse at 50% 40%, rgba(45, 90, 63, 0.05) 0%, rgba(45, 90, 63, 0.35) 70%, rgba(45, 90, 63, 0.55) 100%),
+   444→      linear-gradient(to bottom, rgba(251, 249, 245, 0.6) 0%, rgba(251, 249, 245, 0.3) 50%, rgba(251, 249, 245, 0.85) 100%);
+   445→  }
+   446→
+   447→  /* ---- Shimmer text ---- */
+   448→  .shimmer-text {
+   449→    background: linear-gradient(
+   450→      110deg,
+   451→      hsl(145 38% 32%) 0%,
+   452→      hsl(38 70% 54%) 40%,
+   453→      hsl(145 38% 32%) 60%,
+   454→      hsl(145 38% 32%) 100%
+   455→    );
+   456→    background-size: 250% 100%;
+   457→    -webkit-background-clip: text;
+   458→    background-clip: text;
+   459→    -webkit-text-fill-color: transparent;
+   460→    animation: shimmer-text 3s ease-in-out infinite;
+   461→  }
+   462→  @keyframes shimmer-text {
+   463→    0% { background-position: 100% 0; }
+   464→    100% { background-position: -100% 0; }
+   465→  }
+   466→
+   467→  /* ---- Animated gradient border ---- */
+   468→  .border-gradient {
+   469→    position: relative;
+   470→    border: none !important;
+   471→  }
+   472→  .border-gradient::before {
+   473→    content: "";
+   474→    position: absolute;
+   475→    inset: -2px;
+   476→    border-radius: inherit;
+   477→    background: conic-gradient(
+   478→      from var(--border-gradient-angle, 0deg),
+   479→      hsl(145 38% 32%),
+   480→      hsl(38 70% 54%),
+   481→      hsl(145 32% 48%),
+   482→      hsl(38 65% 82%),
+   483→      hsl(145 38% 32%)
+   484→    );
+   485→    z-index: -1;
+   486→    animation: border-gradient-rotate 4s linear infinite;
+   487→  }
+   488→  .border-gradient::after {
+   489→    content: "";
+   490→    position: absolute;
+   491→    inset: 0;
+   492→    border-radius: inherit;
+   493→    background: inherit;
+   494→    z-index: -1;
+   495→  }
+   496→  @keyframes border-gradient-rotate {
+   497→    to { --border-gradient-angle: 360deg; }
+   498→  }
+   499→  @property --border-gradient-angle {
+   500→    syntax: "<angle>";
+   501→    initial-value: 0deg;
+   502→    inherits: false;
+   503→  }
+   504→
+   505→  /* ---- Ripple effect ---- */
+   506→  .ripple-effect {
+   507→    position: relative;
+   508→    overflow: hidden;
+   509→  }
+   510→  .ripple-effect::after {
+   511→    content: "";
+   512→    position: absolute;
+   513→    inset: 0;
+   514→    background: radial-gradient(circle, rgba(45, 90, 63, 0.15) 0%, transparent 70%);
+   515→    opacity: 0;
+   516→    transform: scale(0);
+   517→    transition: transform 0.5s, opacity 0.4s;
+   518→    pointer-events: none;
+   519→  }
+   520→  .ripple-effect:active::after {
+   521→    transform: scale(2.5);
+   522→    opacity: 1;
+   523→    transition: 0s;
+   524→  }
+   525→
+   526→  /* ---- Confetti burst (used via JS class toggle) ---- */
+   527→  .confetti-burst {
+   528→    animation: confetti-burst 0.6s ease-out forwards;
+   529→  }
+   530→  @keyframes confetti-burst {
+   531→    0% { transform: scale(1); }
+   532→    20% { transform: scale(1.3); }
+   533→    40% { transform: scale(0.95); }
+   534→    60% { transform: scale(1.05); }
+   535→    100% { transform: scale(1); }
+   536→  }
+   537→
+   538→  /* ---- Counter animation (triggered via JS) ---- */
+   539→  .counter-animate {
+   540→    animation: counter-pop 0.4s var(--ease-spring);
+   541→  }
+   542→  @keyframes counter-pop {
+   543→    0% { transform: scale(1); }
+   544→    40% { transform: scale(1.15); }
+   545→    100% { transform: scale(1); }
+   546→  }
+   547→
+   548→  /* ---- Parallax slow (subtle float with rotation) ---- */
+   549→  .parallax-slow {
+   550→    animation: parallax-slow 8s ease-in-out infinite;
+   551→  }
+   552→  @keyframes parallax-slow {
+   553→    0%, 100% { transform: translateY(0) rotate(0deg); }
+   554→    25% { transform: translateY(-6px) rotate(0.5deg); }
+   555→    50% { transform: translateY(-12px) rotate(0deg); }
+   556→    75% { transform: translateY(-6px) rotate(-0.5deg); }
+   557→  }
+   558→
+   559→  /* ---- Video play pulse ---- */
+   560→  .video-play-pulse {
+   561→    animation: video-play-pulse 2s ease-in-out infinite;
+   562→  }
+   563→  @keyframes video-play-pulse {
+   564→    0%, 100% { box-shadow: 0 0 0 0 rgba(45, 90, 63, 0.4); }
+   565→    50% { box-shadow: 0 0 0 12px rgba(45, 90, 63, 0); }
+   566→  }
+   567→
+   568→  /* ---- Sparkle particle ---- */
+   569→  .sparkle {
+   570→    position: absolute;
+   571→    width: 4px;
+   572→    height: 4px;
+   573→    border-radius: 50%;
+   574→    background: hsl(38 70% 54%);
+   575→    pointer-events: none;
+   576→    animation: sparkle-float 3s ease-in-out infinite;
+   577→  }
+   578→  @keyframes sparkle-float {
+   579→    0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
+   580→    20% { opacity: 1; transform: translateY(-10px) scale(1); }
+   581→    80% { opacity: 0.6; transform: translateY(-40px) scale(0.6); }
+   582→    100% { opacity: 0; transform: translateY(-50px) scale(0); }
+   583→  }
+   584→
+   585→  /* ---- Icon bounce on scroll ---- */
+   586→  .icon-bounce-in {
+   587→    animation: icon-bounce-in 0.6s var(--ease-spring);
+   588→  }
+   589→  @keyframes icon-bounce-in {
+   590→    0% { transform: scale(0.5) translateY(10px); opacity: 0; }
+   591→    60% { transform: scale(1.1) translateY(-4px); opacity: 1; }
+   592→    100% { transform: scale(1) translateY(0); opacity: 1; }
+   593→  }
+   594→
+   595→  /* ---- Sold progress bar ---- */
+   596→  .sold-progress {
+   597→    height: 4px;
+   598→    border-radius: 9999px;
+   599→    background: hsl(145 35% 90%);
+   600→    overflow: hidden;
+   601→  }
+   602→  .sold-progress-bar {
+   603→    height: 100%;
+   604→    border-radius: 9999px;
+   605→    background: linear-gradient(90deg, hsl(145 38% 32%), hsl(38 70% 54%));
+   606→    transition: width 1s var(--ease-smooth);
+   607→  }
+   608→
+   609→  /* ---- Best Seller badge glow ---- */
+   610→  .badge-glow {
+   611→    box-shadow: 0 0 12px rgba(201, 148, 46, 0.35), 0 0 4px rgba(201, 148, 46, 0.2);
+   612→  }
+   613→
+   614→  /* ---- Certificate badge ---- */
+   615→  .cert-badge {
+   616→    display: inline-flex;
+   617→    align-items: center;
+   618→    gap: 0.5rem;
+   619→    padding: 0.5rem 1rem;
+   620→    border-radius: 9999px;
+   621→    background: linear-gradient(135deg, hsl(145 35% 94%), hsl(38 65% 92%));
+   622→    border: 1px solid hsl(145 38% 32% / 0.15);
+   623→    font-size: 0.75rem;
+   624→    font-weight: 600;
+   625→    color: hsl(145 45% 22%);
+   626→  }
+   627→
+   628→  /* ---- Testimonial card 3D tilt on hover ---- */
+   629→  .card-tilt {
+   630→    transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
+   631→  }
+   632→  .card-tilt:hover {
+   633→    transform: perspective(800px) rotateY(-3deg) rotateX(2deg) translateY(-6px) !important;
+   634→    box-shadow: 0 20px 50px rgba(24, 40, 30, 0.16) !important;
+   635→  }
+   636→
+   637→  /* ---- Footer wave animation ---- */
+   638→  .footer-wave {
+   639→    animation: footer-wave 6s ease-in-out infinite;
+   640→  }
+   641→  @keyframes footer-wave {
+   642→    0%, 100% { d: path("M0,24 C200,8 400,40 600,24 C800,8 1000,40 1200,24 L1200,48 L0,48 Z"); }
+   643→    50% { d: path("M0,28 C200,40 400,8 600,28 C800,40 1000,8 1200,28 L1200,48 L0,48 Z"); }
+   644→  }
+   645→
+   646→  /* ---- Floating leaf from footer ---- */
+   647→  .leaf-float-up {
+   648→    animation: leaf-float-up 4s ease-out forwards;
+   649→  }
+   650→  @keyframes leaf-float-up {
+   651→    0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.8); }
+   652→    20% { opacity: 0.6; }
+   653→    100% { opacity: 0; transform: translateY(-120px) rotate(25deg) scale(1.1); }
+   654→  }
+   655→
+   656→  /* ---- Popular badge bounce ---- */
+   657→  .badge-bounce-anim {
+   658→    animation: badge-bounce-anim 2s ease-in-out infinite;
+   659→  }
+   660→  @keyframes badge-bounce-anim {
+   661→    0%, 100% { transform: translateY(0); }
+   662→    20% { transform: translateY(-6px); }
+   663→    40% { transform: translateY(0); }
+   664→    60% { transform: translateY(-3px); }
+   665→    80% { transform: translateY(0); }
+   666→  }
+   667→
+   668→  /* ---- Sparkle ring for winner column ---- */
+   669→  .sparkle-ring {
+   670→    animation: sparkle-ring 2.4s ease-in-out infinite;
+   671→  }
+   672→  @keyframes sparkle-ring {
+   673→    0%, 100% { box-shadow: 0 0 0 0 rgba(45, 90, 63, 0.3); }
+   674→    50% { box-shadow: 0 0 0 8px rgba(45, 90, 63, 0); }
+   675→  }
+   676→
+   677→  /* ---- Social button hover colors ---- */
+   678→  .social-ig {
+   679→    transition: all 0.3s var(--ease-smooth);
+   680→  }
+   681→  .social-ig:hover {
+   682→    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+   683→    color: #fff;
+   684→    transform: scale(1.15);
+   685→  }
+   686→
+   687→  .social-wa {
+   688→    transition: all 0.3s var(--ease-smooth);
+   689→  }
+   690→  .social-wa:hover {
+   691→    background: #25d366;
+   692→    color: #fff;
+   693→    transform: scale(1.15);
+   694→  }
+   695→
+   696→  .social-tt {
+   697→    transition: all 0.3s var(--ease-smooth);
+   698→  }
+   699→  .social-tt:hover {
+   700→    background: #010101;
+   701→    color: #fe2c55;
+   702→    transform: scale(1.15);
+   703→  }
+   704→
+   705→  /* ---- Countdown timer digit ---- */
+   706→  .countdown-digit {
+   707→    display: inline-flex;
+   708→    align-items: center;
+   709→    justify-content: center;
+   710→    width: 2.5rem;
+   711→    height: 2.5rem;
+   712→    border-radius: 0.75rem;
+   713→    background: linear-gradient(135deg, hsl(145 38% 32%), hsl(145 45% 22%));
+   714→    color: #fff;
+   715→    font-family: var(--font-heading);
+   716→    font-weight: 700;
+   717→    font-size: 1rem;
+   718→    box-shadow: 0 4px 12px rgba(45, 90, 63, 0.25);
+   719→  }
+   720→
+   721→  /* ---- Save % circular badge ---- */
+   722→  .save-badge {
+   723→    position: absolute;
+   724→    top: 1rem;
+   725→    left: 1rem;
+   726→    width: 3.5rem;
+   727→    height: 3.5rem;
+   728→    border-radius: 50%;
+   729→    display: flex;
+   730→    flex-direction: column;
+   731→    align-items: center;
+   732→    justify-content: center;
+   733→    background: linear-gradient(135deg, hsl(38 70% 54%), hsl(38 75% 44%));
+   734→    color: #fff;
+   735→    font-family: var(--font-heading);
+   736→    box-shadow: 0 4px 14px rgba(201, 148, 46, 0.35);
+   737→    z-index: 2;
+   738→  }
+   739→
+   740→  /* ---- Confetti particle for bundles ---- */
+   741→  .confetti-particle {
+   742→    position: absolute;
+   743→    width: 6px;
+   744→    height: 6px;
+   745→    border-radius: 2px;
+   746→    pointer-events: none;
+   747→    animation: confetti-fall 3s ease-in-out infinite;
+   748→  }
+   749→  @keyframes confetti-fall {
+   750→    0%, 100% { opacity: 0; transform: translateY(0) rotate(0deg); }
+   751→    10% { opacity: 1; }
+   752→    90% { opacity: 0.8; }
+   753→    100% { opacity: 0; transform: translateY(80px) rotate(180deg); }
+   754→  }
+   755→
+   756→  /* ---- Button loading shimmer ---- */
+   757→  .btn-loading-shimmer {
+   758→    position: relative;
+   759→    overflow: hidden;
+   760→  }
+   761→  .btn-loading-shimmer::before {
+   762→    content: "";
+   763→    position: absolute;
+   764→    top: 0;
+   765→    left: -100%;
+   766→    width: 100%;
+   767→    height: 100%;
+   768→    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+   769→    animation: btn-load-shimmer 1.5s ease-in-out infinite;
+   770→  }
+   771→  @keyframes btn-load-shimmer {
+   772→    0% { left: -100%; }
+   773→    100% { left: 100%; }
+   774→  }
+   775→
+   776→  /* ---- Mobile expandable comparison ---- */
+   777→  .comparison-expand-btn {
+   778→    display: flex;
+   779→    align-items: center;
+   780→    gap: 0.25rem;
+   781→    font-size: 0.75rem;
+   782→    font-weight: 600;
+   783→    color: hsl(145 38% 32%);
+   784→    cursor: pointer;
+   785→    transition: color 0.2s;
+   786→  }
+   787→  .comparison-expand-btn:hover {
+   788→    color: hsl(145 45% 18%);
+   789→  }
+   790→}
+   791→
+   792→/* ============== Trust Marquee (Round 6) ============== */
+   793→@keyframes marquee-rsk {
+   794→  0% { transform: translateX(0); }
+   795→  100% { transform: translateX(-50%); }
+   796→}
+   797→.animate-marquee-rsk {
+   798→  animation: marquee-rsk 38s linear infinite;
+   799→  will-change: transform;
+   800→}
+   801→.animate-marquee-rsk:hover {
+   802→  animation-play-state: paused;
+   803→}
+   804→
+   805→/* Skip-to-content link — accessibility */
+   806→.skip-link {
+   807→  position: absolute;
+   808→  left: -9999px;
+   809→  top: 0;
+   810→  z-index: 100;
+   811→  padding: 0.75rem 1.25rem;
+   812→  background: hsl(145 45% 18%);
+   813→  color: #fbf9f5;
+   814→  border-radius: 0 0 0.75rem 0;
+   815→  font-weight: 600;
+   816→  font-size: 0.875rem;
+   817→  transition: left 0.2s ease;
+   818→}
+   819→.skip-link:focus {
+   820→  left: 0;
+   821→  outline: 2px solid hsl(38 70% 54%);
+   822→  outline-offset: 2px;
+   823→}
+   824→
+   825→/* Ingredient chip with hover tooltip (Round 6) */
+   826→.ingredient-chip {
+   827→  position: relative;
+   828→  display: inline-flex;
+   829→  align-items: center;
+   830→  gap: 0.5rem;
+   831→  padding: 0.5rem 0.875rem;
+   832→  border-radius: 9999px;
+   833→  background: hsl(145 35% 96%);
+   834→  border: 1px solid hsl(145 35% 88%);
+   835→  transition: all 0.25s ease;
+   836→  cursor: help;
+   837→}
+   838→.ingredient-chip:hover {
+   839→  background: hsl(145 35% 92%);
+   840→  border-color: hsl(145 38% 70%);
+   841→  transform: translateY(-1px);
+   842→}
+   843→.ingredient-chip .ing-tooltip {
+   844→  position: absolute;
+   845→  bottom: calc(100% + 0.5rem);
+   846→  left: 50%;
+   847→  transform: translateX(-50%) translateY(4px);
+   848→  background: hsl(150 45% 14%);
+   849→  color: #fbf9f5;
+   850→  padding: 0.625rem 0.875rem;
+   851→  border-radius: 0.625rem;
+   852→  font-size: 0.75rem;
+   853→  font-weight: 500;
+   854→  line-height: 1.4;
+   855→  width: 14rem;
+   856→  opacity: 0;
+   857→  pointer-events: none;
+   858→  transition: all 0.2s ease;
+   859→  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+   860→  z-index: 50;
+   861→}
+   862→.ingredient-chip .ing-tooltip::after {
+   863→  content: "";
+   864→  position: absolute;
+   865→  top: 100%;
+   866→  left: 50%;
+   867→  transform: translateX(-50%);
+   868→  border: 6px solid transparent;
+   869→  border-top-color: hsl(150 45% 14%);
+   870→}
+   871→.ingredient-chip:hover .ing-tooltip,
+   872→.ingredient-chip:focus-visible .ing-tooltip {
+   873→  opacity: 1;
+   874→  transform: translateX(-50%) translateY(0);
+   875→}
+   876→
+   877→/* Glow ring pulse on key CTAs (Round 6) */
+   878→@keyframes glow-ring-pulse {
+   879→  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 148, 46, 0.4); }
+   880→  50% { box-shadow: 0 0 0 14px rgba(201, 148, 46, 0); }
+   881→}
+   882→.glow-ring-pulse {
+   883→  animation: glow-ring-pulse 2.4s ease-out infinite;
+   884→}
+   885→
+   886→/* Card hover lift — additional micro-interaction (Round 6) */
+   887→.lift-on-hover {
+   888→  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+   889→}
+   890→.lift-on-hover:hover {
+   891→  transform: translateY(-4px);
+   892→  box-shadow: 0 18px 40px -12px rgba(45, 90, 63, 0.18);
+   893→}
+   894→
+   895→/* Animated dotted divider — useful for separating content blocks */
+   896→@keyframes dot-march {
+   897→  to { background-position: 16px 0; }
+   898→}
+   899→.dotted-divider {
+   900→  height: 2px;
+   901→  background-image: radial-gradient(circle, hsl(145 38% 32% / 0.25) 1px, transparent 1.5px);
+   902→  background-size: 8px 2px;
+   903→  background-repeat: repeat-x;
+   904→  animation: dot-march 1.2s linear infinite;
+   905→}
+   906→
+   907→/* Shimmer skeleton loader for images */
+   908→@keyframes img-shimmer {
+   909→  0% { background-position: -200% 0; }
+   910→  100% { background-position: 200% 0; }
+   911→}
+   912→.img-skeleton {
+   913→  background: linear-gradient(90deg, hsl(145 35% 94%) 25%, hsl(145 35% 88%) 50%, hsl(145 35% 94%) 75%);
+   914→  background-size: 200% 100%;
+   915→  animation: img-shimmer 1.6s ease-in-out infinite;
+   916→}
+   917→
+   918→/* ============== Reduced motion ============== */
+   919→@media (prefers-reduced-motion: reduce) {
+   920→  *, *::before, *::after {
+   921→    animation-duration: 0.01ms !important;
+   922→    animation-iteration-count: 1 !important;
+   923→    transition-duration: 0.01ms !important;
+   924→    scroll-behavior: auto !important;
+   925→  }
+   926→}
+   927→

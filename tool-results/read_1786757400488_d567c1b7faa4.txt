@@ -1,0 +1,739 @@
+     1→/* ========================================
+     2→   RESIKKU ESSENTIALS — App Logic
+     3→   Product catalog, cart, animations
+     4→   ======================================== */
+     5→
+     6→// ──────────────────────────────────────────
+     7→// SVG ICONS DICTIONARY
+     8→// ──────────────────────────────────────────
+     9→const ICONS = {
+    10→  lavender: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M9 7a3 3 0 0 1 6 0c0 2-3 5-3 5s-3-3-3-5z"/><path d="M6 13a2.5 2.5 0 0 1 5 0c0 1.5-2.5 3.5-2.5 3.5S6 14.5 6 13z"/><path d="M13 13a2.5 2.5 0 0 1 5 0c0 1.5-2.5 3.5-2.5 3.5S13 14.5 13 13z"/></svg>`,
+    11→  greentea: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 21 2c-1 4.5-1.5 6-3.1 11.2A7 7 0 0 1 11 20z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
+    12→  citrus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12L4.93 4.93"/><path d="M12 12V2"/><path d="M12 12l7.07-7.07"/><path d="M12 12h10"/></svg>`,
+    13→  baby: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>`,
+    14→  charcoal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
+    15→  rose: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 0 0-5 5c0 3 5 8 5 8s5-5 5-8a5 5 0 0 0-5-5z"/><circle cx="12" cy="8" r="2"/><path d="M12 16v6"/><path d="M9 19c-2-1-3-3-3-5"/><path d="M15 19c2-1 3-3 3-5"/></svg>`,
+    16→  eucalyptus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c0-4 1.5-7 4-9"/><path d="M12 11c1-4 4-7 8-7-1 4-4 7-8 7z"/></svg>`,
+    17→  sheet: `<svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+    18→  leaf: `<svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 21 2c-1 4.5-1.5 6-3.1 11.2A7 7 0 0 1 11 20z"/></svg>`,
+    19→  search: `<svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+    20→  truck: `<svg class="shipping-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+    21→  gift: `<svg class="shipping-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
+    22→  bag: `<svg class="empty-bag-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`
+    23→};
+    24→
+    25→// ──────────────────────────────────────────
+    26→// PRODUCT DATA (3 Signature Varian)
+    27→// ──────────────────────────────────────────
+    28→const PRODUCTS = [
+    29→  {
+    30→    id: 1,
+    31→    name: 'Lavender Dream',
+    32→    category: 'bath',
+    33→    categoryLabel: 'Mandi & Relaksasi',
+    34→    price: 35000,
+    35→    rating: 5,
+    36→    iconSvg: ICONS.lavender,
+    37→    accentColor: '#9d7bb0',
+    38→    sheetColor: '#e8dcfa',
+    39→    scent: 'French Lavender & Sage',
+    40→    gradient: 'linear-gradient(135deg, hsl(270, 40%, 92%), hsl(280, 35%, 82%))',
+    41→    description: 'Aroma lavender Prancis yang menenangkan pikiran. Melembapkan kulit saat mandi air hangat.',
+    42→    fullDescription: 'Nikmati sensasi spa relaksasi di rumah. Diformulasi dengan minyak esensial lavender murni Prancis dan ekstrak chamomile, sabun kertas Lavender Dream larut seketika menjadi busa creamy yang menenangkan dan melembutkan kulit.',
+    43→    sheets: 30,
+    44→    popularity: 95,
+    45→    tag: 'Best Seller',
+    46→    isNew: false
+    47→  },
+    48→  {
+    49→    id: 2,
+    50→    name: 'Green Tea Fresh',
+    51→    category: 'hand',
+    52→    categoryLabel: 'Cuci Tangan',
+    53→    price: 25000,
+    54→    rating: 5,
+    55→    iconSvg: ICONS.greentea,
+    56→    accentColor: '#4c825f',
+    57→    sheetColor: '#d6eddc',
+    58→    scent: 'Kyoto Green Tea & Mint',
+    59→    gradient: 'linear-gradient(135deg, hsl(140, 40%, 90%), hsl(155, 35%, 78%))',
+    60→    description: 'Ekstrak teh hijau antioksidan tinggi untuk perlindungan antibakteri alami sehari-hari.',
+    61→    fullDescription: 'Kekuatan antioksidan daun teh hijau Kyoto dipadukan dengan daun mint segar. Efektif membunuh kuman pada tangan tanpa menghilangkan kelembapan alami kulit. Lembaran sabun ultra-tipis yang mudah dibawa ke mana saja.',
+    62→    sheets: 30,
+    63→    popularity: 88,
+    64→    tag: 'Favorit Harian',
+    65→    isNew: false
+    66→  },
+    67→  {
+    68→    id: 3,
+    69→    name: 'Citrus Burst',
+    70→    category: 'travel',
+    71→    categoryLabel: 'Travel & Outdoor',
+    72→    price: 28000,
+    73→    rating: 5,
+    74→    iconSvg: ICONS.citrus,
+    75→    accentColor: '#d98b2b',
+    76→    sheetColor: '#fde8c8',
+    77→    scent: 'Valencia Mandarin & Bergamot',
+    78→    gradient: 'linear-gradient(135deg, hsl(45, 70%, 92%), hsl(35, 65%, 80%))',
+    79→    description: 'Aroma jeruk mandarin ceria yang membangkitkan energi saat berpetualang dan traveling.',
+    80→    fullDescription: 'Teman setia para traveler dan pencinta alam! Citrus Burst diperkaya dengan minyak jeruk mandarin dan bergamot yang memberikan sensasi segar instan. Kemasan saku tahan cipratan air menjaganya tetap kering hingga digunakan.',
+    81→    sheets: 25,
+    82→    popularity: 92,
+    83→    tag: 'Travel Choice',
+    84→    isNew: true
+    85→  }
+    86→];
+    87→
+    88→const TESTIMONIALS = [
+    89→  {
+    90→    name: 'Sari Wulandari',
+    91→    role: 'Ibu Rumah Tangga • Jakarta',
+    92→    initial: 'S',
+    93→    rating: 5,
+    94→    text: '"Praktis banget buat dibawa ke mana-mana! Anak-anak jadi rajin cuci tangan karena bentuknya sabun kertas unik dan langsung berbusa banyak saat kena air."'
+    95→  },
+    96→  {
+    97→    name: 'Andi Prasetyo',
+    98→    role: 'Travel Blogger • Bali',
+    99→    initial: 'A',
+   100→    rating: 5,
+   101→    text: '"Selalu bawa Citrus Burst ke setiap trip luar negeri dan pendakian. Nggak makan tempat di backpack, anti bocor, dan aromanya super segar!"'
+   102→  },
+   103→  {
+   104→    name: 'dr. Dina Rahmawati',
+   105→    role: 'Dokter Spesialis Kulit • Bandung',
+   106→    initial: 'D',
+   107→    rating: 5,
+   108→    text: '"Sebagai dermatologis, saya rekomendasikan Resikku untuk keluarga. Bebas SLS, paraben, dan sangat lembut di kulit."'
+   109→  },
+   110→  {
+   111→    name: 'Reza Firmansyah',
+   112→    role: 'Trail Runner & Hiker • Malang',
+   113→    initial: 'R',
+   114→    rating: 5,
+   115→    text: '"Game changer buat outdoor! Dulu repot bawa sabun cair yang berat dan sering bocor, sekarang cukup selipkan 1 pack Resikku di rompi lari."'
+   116→  },
+   117→  {
+   118→    name: 'Maya Putri',
+   119→    role: 'Creative Director • Surabaya',
+   120→    initial: 'M',
+   121→    rating: 5,
+   122→    text: '"Packaging-nya super aesthetic dan aromanya mewah setara brand luxury. Selalu ada di pouch makeup saya!"'
+   123→  },
+   124→  {
+   125→    name: 'Budi Santoso',
+   126→    role: 'Professional • Tangerang',
+   127→    initial: 'B',
+   128→    rating: 5,
+   129→    text: '"Satu pack Green Tea ditaruh di saku kemeja. Kalau dinas kantor atau ke resto, cuci tangan jadi lebih higienis tanpa harus pakai sabun umum."'
+   130→  }
+   131→];
+   132→
+   133→// ──────────────────────────────────────────
+   134→// FORMAT HELPERS
+   135→// ──────────────────────────────────────────
+   136→function formatPrice(price) {
+   137→  return 'Rp ' + price.toLocaleString('id-ID');
+   138→}
+   139→
+   140→function renderStars(rating, size = 14) {
+   141→  let html = '';
+   142→  for (let i = 1; i <= 5; i++) {
+   143→    html += `<span class="star${i > rating ? ' empty' : ''}" style="font-size:${size}px">★</span>`;
+   144→  }
+   145→  return html;
+   146→}
+   147→
+   148→// ──────────────────────────────────────────
+   149→// CART STATE
+   150→// ──────────────────────────────────────────
+   151→let cart = JSON.parse(localStorage.getItem('resikku_cart') || '[]');
+   152→
+   153→function saveCart() {
+   154→  localStorage.setItem('resikku_cart', JSON.stringify(cart));
+   155→  updateCartBadge();
+   156→  renderCart();
+   157→}
+   158→
+   159→function addToCart(productId, quantity = 1) {
+   160→  const product = PRODUCTS.find(p => p.id === productId);
+   161→  if (!product) return;
+   162→  
+   163→  const existing = cart.find(item => item.id === productId);
+   164→  if (existing) {
+   165→    existing.quantity += quantity;
+   166→  } else {
+   167→    cart.push({ id: productId, quantity });
+   168→  }
+   169→  
+   170→  saveCart();
+   171→  showToast(`${product.name} (${quantity}x) berhasil ditambahkan`);
+   172→
+   173→  // Animate cart badge
+   174→  if (cartBadgeEl) {
+   175→    cartBadgeEl.classList.add('bounce');
+   176→    setTimeout(() => cartBadgeEl.classList.remove('bounce'), 600);
+   177→  }
+   178→}
+   179→
+   180→function removeFromCart(productId) {
+   181→  cart = cart.filter(item => item.id !== productId);
+   182→  saveCart();
+   183→}
+   184→
+   185→function updateCartQuantity(productId, delta) {
+   186→  const item = cart.find(i => i.id === productId);
+   187→  if (!item) return;
+   188→  
+   189→  item.quantity += delta;
+   190→  if (item.quantity <= 0) {
+   191→    removeFromCart(productId);
+   192→  } else {
+   193→    saveCart();
+   194→  }
+   195→}
+   196→
+   197→function getCartTotal() {
+   198→  return cart.reduce((total, item) => {
+   199→    const product = PRODUCTS.find(p => p.id === item.id);
+   200→    return total + (product ? product.price * item.quantity : 0);
+   201→  }, 0);
+   202→}
+   203→
+   204→function getCartCount() {
+   205→  return cart.reduce((count, item) => count + item.quantity, 0);
+   206→}
+   207→
+   208→// ──────────────────────────────────────────
+   209→// UI — CART BADGE
+   210→// ──────────────────────────────────────────
+   211→const cartBadgeEl = document.getElementById('cart-badge');
+   212→
+   213→function updateCartBadge() {
+   214→  const count = getCartCount();
+   215→  if (cartBadgeEl) {
+   216→    cartBadgeEl.textContent = count;
+   217→    cartBadgeEl.classList.toggle('show', count > 0);
+   218→  }
+   219→}
+   220→
+   221→// ──────────────────────────────────────────
+   222→// UI — PRODUCT GRID (3 Signature Items)
+   223→// ──────────────────────────────────────────
+   224→const productGrid = document.getElementById('product-grid');
+   225→
+   226→function renderProducts() {
+   227→  if (!productGrid) return;
+   228→  
+   229→  productGrid.innerHTML = PRODUCTS.map((product, index) => `
+   230→    <div class="product-card reveal stagger-${index + 1}" data-product-id="${product.id}">
+   231→      <!-- Realistic Paper Soap Stacked Visual -->
+   232→      <div class="product-card-visual" style="background: ${product.gradient}">
+   233→        ${product.tag ? `<span class="product-tag-badge">${product.tag}</span>` : ''}
+   234→        
+   235→        <div class="paper-soap-stack">
+   236→          <div class="soap-sheet sheet-back" style="background: ${product.sheetColor};"></div>
+   237→          <div class="soap-sheet sheet-mid" style="background: ${product.sheetColor};"></div>
+   238→          <div class="soap-sheet sheet-front" style="background: ${product.sheetColor}; border-color: ${product.accentColor}40;">
+   239→            <div class="soap-sheet-inner">
+   240→              <div style="color: ${product.accentColor}; width: 40px; height: 40px;">${product.iconSvg}</div>
+   241→              <span class="soap-sheet-text" style="color: ${product.accentColor};">RESIKKU</span>
+   242→            </div>
+   243→          </div>
+   244→        </div>
+   245→
+   246→        <div class="sheet-count-chip">
+   247→          ${ICONS.sheet}
+   248→          <span>${product.sheets} Lembar • 0.2mm</span>
+   249→        </div>
+   250→
+   251→        <button class="quick-view-overlay" data-quick-view="${product.id}">
+   252→          ${ICONS.search}
+   253→          <span>Detail Cepat</span>
+   254→        </button>
+   255→      </div>
+   256→
+   257→      <!-- Info Area -->
+   258→      <div class="product-card-info">
+   259→        <div class="product-meta-row">
+   260→          <span class="product-card-category">${product.categoryLabel}</span>
+   261→          <div class="product-card-rating">${renderStars(product.rating, 13)}</div>
+   262→        </div>
+   263→
+   264→        <h3 class="product-card-name">${product.name}</h3>
+   265→        <p class="product-scent-note">
+   266→          ${ICONS.leaf}
+   267→          <span>${product.scent}</span>
+   268→        </p>
+   269→        <p class="product-card-desc">${product.description}</p>
+   270→
+   271→        <div class="product-card-footer">
+   272→          <div class="product-price-wrap">
+   273→            <span class="product-card-price">${formatPrice(product.price)}</span>
+   274→            <small class="product-price-unit">/ kotak saku</small>
+   275→          </div>
+   276→          <button class="add-to-cart-btn" data-add-cart="${product.id}" aria-label="Tambah ${product.name} ke keranjang">
+   277→            <svg class="inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+   278→              <line x1="12" y1="5" x2="12" y2="19"/>
+   279→              <line x1="5" y1="12" x2="19" y2="12"/>
+   280→            </svg>
+   281→            <span>Keranjang</span>
+   282→          </button>
+   283→        </div>
+   284→      </div>
+   285→    </div>
+   286→  `).join('');
+   287→  
+   288→  observeElements();
+   289→  
+   290→  // Bind card clicks
+   291→  productGrid.querySelectorAll('.product-card').forEach(card => {
+   292→    card.addEventListener('click', (e) => {
+   293→      // Don't open modal if clicking add-to-cart button
+   294→      if (e.target.closest('.add-to-cart-btn')) return;
+   295→      const id = parseInt(card.dataset.productId);
+   296→      openProductModal(id);
+   297→    });
+   298→  });
+   299→  
+   300→  // Bind add-to-cart buttons
+   301→  productGrid.querySelectorAll('[data-add-cart]').forEach(btn => {
+   302→    btn.addEventListener('click', (e) => {
+   303→      e.stopPropagation();
+   304→      const id = parseInt(btn.dataset.addCart);
+   305→      addToCart(id);
+   306→    });
+   307→  });
+   308→}
+   309→
+   310→// ──────────────────────────────────────────
+   311→// UI — PRODUCT DETAIL MODAL
+   312→// ──────────────────────────────────────────
+   313→const modalOverlay = document.getElementById('product-modal');
+   314→const modalVisual = document.getElementById('modal-visual');
+   315→const modalIcon = document.getElementById('modal-icon');
+   316→const modalCategory = document.getElementById('modal-category');
+   317→const modalTitle = document.getElementById('modal-title');
+   318→const modalRating = document.getElementById('modal-rating');
+   319→const modalDesc = document.getElementById('modal-desc');
+   320→const modalPrice = document.getElementById('modal-price');
+   321→const qtyValue = document.getElementById('qty-value');
+   322→
+   323→let currentModalProduct = null;
+   324→let currentQty = 1;
+   325→
+   326→function openProductModal(productId) {
+   327→  const product = PRODUCTS.find(p => p.id === productId);
+   328→  if (!product) return;
+   329→  
+   330→  currentModalProduct = product;
+   331→  currentQty = 1;
+   332→  
+   333→  modalVisual.style.background = product.gradient;
+   334→  modalVisual.innerHTML = `
+   335→    <button class="modal-close" id="modal-close" aria-label="Tutup">✕</button>
+   336→    <div class="paper-soap-stack modal-soap-stack">
+   337→      <div class="soap-sheet sheet-back" style="background: ${product.sheetColor};"></div>
+   338→      <div class="soap-sheet sheet-mid" style="background: ${product.sheetColor};"></div>
+   339→      <div class="soap-sheet sheet-front" style="background: ${product.sheetColor}; border-color: ${product.accentColor}50;">
+   340→        <div class="soap-sheet-inner">
+   341→          <div class="modal-product-icon-svg" style="color: ${product.accentColor}; width: 36px; height: 36px;">
+   342→            ${product.iconSvg}
+   343→          </div>
+   344→          <span class="soap-sheet-text" style="color: ${product.accentColor}; font-weight:700;">${product.name}</span>
+   345→          <span style="font-size:11px; color:${product.accentColor}; opacity:0.8;">${product.sheets} Lembar Organik</span>
+   346→        </div>
+   347→      </div>
+   348→    </div>
+   349→  `;
+   350→  
+   351→  // Rebind close button
+   352→  document.getElementById('modal-close').addEventListener('click', closeProductModal);
+   353→
+   354→  modalCategory.textContent = `${product.categoryLabel} • ${product.scent}`;
+   355→  modalTitle.textContent = product.name;
+   356→  modalRating.innerHTML = renderStars(product.rating, 16) + `<span>${product.rating}.0 (Ulasan Terverifikasi)</span>`;
+   357→  modalDesc.textContent = product.fullDescription;
+   358→  modalPrice.innerHTML = `${formatPrice(product.price)} <small>/ pack (${product.sheets} lembar)</small>`;
+   359→  qtyValue.textContent = currentQty;
+   360→  
+   361→  modalOverlay.classList.add('active');
+   362→  document.body.style.overflow = 'hidden';
+   363→}
+   364→
+   365→function closeProductModal() {
+   366→  modalOverlay.classList.remove('active');
+   367→  document.body.style.overflow = '';
+   368→  currentModalProduct = null;
+   369→}
+   370→
+   371→document.getElementById('modal-close').addEventListener('click', closeProductModal);
+   372→modalOverlay.addEventListener('click', (e) => {
+   373→  if (e.target === modalOverlay) closeProductModal();
+   374→});
+   375→
+   376→document.getElementById('qty-minus').addEventListener('click', () => {
+   377→  if (currentQty > 1) {
+   378→    currentQty--;
+   379→    qtyValue.textContent = currentQty;
+   380→  }
+   381→});
+   382→
+   383→document.getElementById('qty-plus').addEventListener('click', () => {
+   384→  if (currentQty < 20) {
+   385→    currentQty++;
+   386→    qtyValue.textContent = currentQty;
+   387→  }
+   388→});
+   389→
+   390→document.getElementById('modal-add-cart').addEventListener('click', () => {
+   391→  if (currentModalProduct) {
+   392→    addToCart(currentModalProduct.id, currentQty);
+   393→    closeProductModal();
+   394→  }
+   395→});
+   396→
+   397→// ──────────────────────────────────────────
+   398→// UI — CART DRAWER
+   399→// ──────────────────────────────────────────
+   400→const cartOverlay = document.getElementById('cart-overlay');
+   401→const cartDrawer = document.getElementById('cart-drawer');
+   402→const cartItemsEl = document.getElementById('cart-items');
+   403→const cartSubtotal = document.getElementById('cart-subtotal');
+   404→const cartFooter = document.getElementById('cart-footer');
+   405→const cartCountPill = document.getElementById('cart-count-pill');
+   406→const shippingBarText = document.getElementById('shipping-bar-text');
+   407→const shippingProgressFill = document.getElementById('shipping-progress-fill');
+   408→
+   409→function openCart() {
+   410→  cartOverlay.classList.add('active');
+   411→  cartDrawer.classList.add('active');
+   412→  document.body.style.overflow = 'hidden';
+   413→}
+   414→
+   415→function closeCart() {
+   416→  cartOverlay.classList.remove('active');
+   417→  cartDrawer.classList.remove('active');
+   418→  document.body.style.overflow = '';
+   419→}
+   420→
+   421→document.getElementById('cart-toggle').addEventListener('click', openCart);
+   422→document.getElementById('cart-close').addEventListener('click', closeCart);
+   423→cartOverlay.addEventListener('click', closeCart);
+   424→
+   425→const FREE_SHIPPING_THRESHOLD = 100000;
+   426→
+   427→function renderCart() {
+   428→  const total = getCartTotal();
+   429→  const count = getCartCount();
+   430→
+   431→  if (cartCountPill) {
+   432→    cartCountPill.textContent = `${count} Produk`;
+   433→  }
+   434→
+   435→  // Free shipping bar progress
+   436→  if (shippingBarText && shippingProgressFill) {
+   437→    if (total >= FREE_SHIPPING_THRESHOLD) {
+   438→      shippingBarText.innerHTML = `${ICONS.gift} <span>Selamat! Pesanan Anda mendapatkan <strong>GRATIS ONGKIR!</strong></span>`;
+   439→      shippingProgressFill.style.width = '100%';
+   440→      shippingProgressFill.style.background = 'var(--clr-primary)';
+   441→    } else {
+   442→      const remaining = FREE_SHIPPING_THRESHOLD - total;
+   443→      const percent = Math.min(100, Math.round((total / FREE_SHIPPING_THRESHOLD) * 100));
+   444→      shippingBarText.innerHTML = `${ICONS.truck} <span>Beli <strong>${formatPrice(remaining)}</strong> lagi untuk <strong>Gratis Ongkir!</strong></span>`;
+   445→      shippingProgressFill.style.width = `${percent}%`;
+   446→      shippingProgressFill.style.background = 'linear-gradient(90deg, var(--clr-accent), var(--clr-primary))';
+   447→    }
+   448→  }
+   449→
+   450→  if (cart.length === 0) {
+   451→    cartItemsEl.innerHTML = `
+   452→      <div class="cart-empty">
+   453→        <div class="cart-empty-icon">${ICONS.bag}</div>
+   454→        <h4>Keranjangmu Masih Kosong</h4>
+   455→        <p>Yuk pilih varian sabun kertas organik favoritmu dan rasakan kebersihannya!</p>
+   456→        <button class="btn btn-primary btn-sm" onclick="closeCart()" style="margin-top: 16px;">
+   457→          Lihat Koleksi Produk
+   458→        </button>
+   459→      </div>
+   460→    `;
+   461→    cartFooter.style.display = 'none';
+   462→    return;
+   463→  }
+   464→  
+   465→  cartFooter.style.display = 'block';
+   466→  
+   467→  cartItemsEl.innerHTML = cart.map(item => {
+   468→    const product = PRODUCTS.find(p => p.id === item.id);
+   469→    if (!product) return '';
+   470→    
+   471→    return `
+   472→      <div class="cart-item">
+   473→        <div class="cart-item-visual" style="background: ${product.gradient}; color: ${product.accentColor};">
+   474→          <div style="width: 26px; height: 26px;">${product.iconSvg}</div>
+   475→        </div>
+   476→        <div class="cart-item-info">
+   477→          <p class="cart-item-name">${product.name}</p>
+   478→          <span class="cart-item-variant">${product.sheets} Lembar • ${product.scent}</span>
+   479→          <p class="cart-item-price">${formatPrice(product.price)}</p>
+   480→          <div class="cart-item-controls">
+   481→            <button class="cart-qty-btn" data-cart-minus="${product.id}" aria-label="Kurangi jumlah">−</button>
+   482→            <span class="cart-item-qty">${item.quantity}</span>
+   483→            <button class="cart-qty-btn" data-cart-plus="${product.id}" aria-label="Tambah jumlah">+</button>
+   484→          </div>
+   485→        </div>
+   486→        <button class="cart-item-remove" data-cart-remove="${product.id}" title="Hapus produk">✕</button>
+   487→      </div>
+   488→    `;
+   489→  }).join('');
+   490→  
+   491→  cartSubtotal.textContent = formatPrice(total);
+   492→  
+   493→  // Update WhatsApp link with order details
+   494→  updateWhatsAppLink();
+   495→  
+   496→  // Bind controls
+   497→  cartItemsEl.querySelectorAll('[data-cart-minus]').forEach(btn => {
+   498→    btn.addEventListener('click', () => updateCartQuantity(parseInt(btn.dataset.cartMinus), -1));
+   499→  });
+   500→  cartItemsEl.querySelectorAll('[data-cart-plus]').forEach(btn => {
+   501→    btn.addEventListener('click', () => updateCartQuantity(parseInt(btn.dataset.cartPlus), 1));
+   502→  });
+   503→  cartItemsEl.querySelectorAll('[data-cart-remove]').forEach(btn => {
+   504→    btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.cartRemove)));
+   505→  });
+   506→}
+   507→
+   508→function updateWhatsAppLink() {
+   509→  const waBtn = document.getElementById('cart-wa-btn');
+   510→  if (!waBtn || cart.length === 0) return;
+   511→  
+   512→  const total = getCartTotal();
+   513→  const isFreeShip = total >= FREE_SHIPPING_THRESHOLD;
+   514→  
+   515→  let message = '*PESANAN RESIKKU ESSENTIALS*\n\n';
+   516→  message += '*Rincian Produk:*\n';
+   517→  cart.forEach((item, index) => {
+   518→    const product = PRODUCTS.find(p => p.id === item.id);
+   519→    if (product) {
+   520→      message += `${index + 1}. ${product.name} (${product.sheets} Lembar)\n`;
+   521→      message += `   Jumlah: ${item.quantity} pack\n`;
+   522→      message += `   Harga: ${formatPrice(product.price * item.quantity)}\n\n`;
+   523→    }
+   524→  });
+   525→  
+   526→  message += `*Total: ${formatPrice(total)}*\n`;
+   527→  if (isFreeShip) {
+   528→    message += `*Status: GRATIS ONGKIR*\n\n`;
+   529→  } else {
+   530→    message += `\n`;
+   531→  }
+   532→  
+   533→  message += `*Data Pengiriman:*\nNama:\nAlamat Lengkap:\nNo. HP:\n\nMohon info ketersediaan stok dan kelanjutan pesanan. Terima kasih!`;
+   534→  
+   535→  waBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(message)}`;
+   536→}
+   537→
+   538→// ──────────────────────────────────────────
+   539→// UI — TESTIMONIALS (Infinite Marquee)
+   540→// ──────────────────────────────────────────
+   541→function renderTestimonials() {
+   542→  const track = document.getElementById('testimonial-track');
+   543→  
+   544→  const cardHTML = (t) => `
+   545→    <div class="testimonial-card glass-card">
+   546→      <div class="testimonial-stars">${renderStars(t.rating, 16)}</div>
+   547→      <p class="testimonial-text">${t.text}</p>
+   548→      <div class="testimonial-author">
+   549→        <div class="testimonial-avatar">${t.initial}</div>
+   550→        <div>
+   551→          <p class="testimonial-name">${t.name}</p>
+   552→          <p class="testimonial-role">${t.role}</p>
+   553→        </div>
+   554→      </div>
+   555→    </div>
+   556→  `;
+   557→  
+   558→  // Render cards twice for seamless infinite loop
+   559→  const allCards = TESTIMONIALS.map(cardHTML).join('');
+   560→  track.innerHTML = allCards + allCards;
+   561→}
+   562→
+   563→// ──────────────────────────────────────────
+   564→// TOAST NOTIFICATION
+   565→// ──────────────────────────────────────────
+   566→const toastEl = document.getElementById('toast');
+   567→const toastText = document.getElementById('toast-text');
+   568→let toastTimeout;
+   569→
+   570→function showToast(message) {
+   571→  clearTimeout(toastTimeout);
+   572→  toastText.textContent = message;
+   573→  toastEl.classList.add('show');
+   574→  toastTimeout = setTimeout(() => {
+   575→    toastEl.classList.remove('show');
+   576→  }, 2500);
+   577→}
+   578→
+   579→// ──────────────────────────────────────────
+   580→// SCROLL — Sticky Header & Active Nav Highlighting
+   581→// ──────────────────────────────────────────
+   582→const header = document.getElementById('site-header');
+   583→const sections = document.querySelectorAll('section[id]');
+   584→const navLinks = document.querySelectorAll('.header-nav a[data-nav]');
+   585→
+   586→function updateActiveNav() {
+   587→  const scrollPos = window.scrollY + 140; // Offset for sticky navbar
+   588→  const windowHeight = window.innerHeight;
+   589→  const docHeight = document.documentElement.scrollHeight;
+   590→
+   591→  // If scrolled to near the bottom of the page, activate the last tab (Ulasan)
+   592→  if (window.scrollY + windowHeight >= docHeight - 80) {
+   593→    navLinks.forEach(link => {
+   594→      link.classList.toggle('active', link.dataset.nav === 'testimonials');
+   595→    });
+   596→    return;
+   597→  }
+   598→
+   599→  let currentId = 'hero';
+   600→  sections.forEach(section => {
+   601→    const top = section.offsetTop;
+   602→    const height = section.offsetHeight;
+   603→    if (scrollPos >= top && scrollPos < top + height) {
+   604→      currentId = section.id;
+   605→    }
+   606→  });
+   607→
+   608→  navLinks.forEach(link => {
+   609→    link.classList.toggle('active', link.dataset.nav === currentId);
+   610→  });
+   611→}
+   612→
+   613→function onScroll() {
+   614→  if (header) {
+   615→    header.classList.toggle('scrolled', window.scrollY > 40);
+   616→  }
+   617→  updateActiveNav();
+   618→}
+   619→
+   620→window.addEventListener('scroll', onScroll, { passive: true });
+   621→
+   622→// Bind click on nav links for instant active tab switch
+   623→navLinks.forEach(link => {
+   624→  link.addEventListener('click', () => {
+   625→    navLinks.forEach(l => l.classList.remove('active'));
+   626→    link.classList.add('active');
+   627→  });
+   628→});
+   629→
+   630→// ──────────────────────────────────────────
+   631→// SCROLL — Reveal Animations (IntersectionObserver)
+   632→// ──────────────────────────────────────────
+   633→const revealObserver = new IntersectionObserver((entries) => {
+   634→  entries.forEach(entry => {
+   635→    if (entry.isIntersecting) {
+   636→      entry.target.classList.add('visible');
+   637→      revealObserver.unobserve(entry.target);
+   638→    }
+   639→  });
+   640→}, {
+   641→  threshold: 0.12,
+   642→  rootMargin: '0px 0px -40px 0px'
+   643→});
+   644→
+   645→function observeElements() {
+   646→  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+   647→    const rect = el.getBoundingClientRect();
+   648→    if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) + 50) {
+   649→      el.classList.add('visible');
+   650→    } else {
+   651→      el.classList.add('reveal-init');
+   652→      revealObserver.observe(el);
+   653→    }
+   654→  });
+   655→}
+   656→
+   657→// ──────────────────────────────────────────
+   658→// MOBILE MENU
+   659→// ──────────────────────────────────────────
+   660→const menuToggle = document.getElementById('menu-toggle');
+   661→const headerNav = document.getElementById('header-nav');
+   662→
+   663→menuToggle.addEventListener('click', () => {
+   664→  menuToggle.classList.toggle('active');
+   665→  headerNav.classList.toggle('active');
+   666→  document.body.style.overflow = headerNav.classList.contains('active') ? 'hidden' : '';
+   667→});
+   668→
+   669→// Close mobile menu when clicking a nav link
+   670→headerNav.querySelectorAll('a').forEach(link => {
+   671→  link.addEventListener('click', () => {
+   672→    menuToggle.classList.remove('active');
+   673→    headerNav.classList.remove('active');
+   674→    document.body.style.overflow = '';
+   675→  });
+   676→});
+   677→
+   678→// ──────────────────────────────────────────
+   679→// NEWSLETTER FORM
+   680→// ──────────────────────────────────────────
+   681→document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+   682→  e.preventDefault();
+   683→  const input = e.target.querySelector('input');
+   684→  showToast('Terima kasih! Kamu sudah terdaftar di newsletter kami ✨');
+   685→  input.value = '';
+   686→});
+   687→
+   688→// ──────────────────────────────────────────
+   689→// KEYBOARD — ESC to close modals
+   690→// ──────────────────────────────────────────
+   691→document.addEventListener('keydown', (e) => {
+   692→  if (e.key === 'Escape') {
+   693→    closeProductModal();
+   694→    closeCart();
+   695→    if (headerNav.classList.contains('active')) {
+   696→      menuToggle.classList.remove('active');
+   697→      headerNav.classList.remove('active');
+   698→      document.body.style.overflow = '';
+   699→    }
+   700→  }
+   701→});
+   702→
+   703→// ──────────────────────────────────────────
+   704→// SMOOTH SCROLL for anchor links
+   705→// ──────────────────────────────────────────
+   706→document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+   707→  anchor.addEventListener('click', (e) => {
+   708→    const targetId = anchor.getAttribute('href');
+   709→    if (targetId === '#') return;
+   710→    
+   711→    const target = document.querySelector(targetId);
+   712→    if (target) {
+   713→      e.preventDefault();
+   714→      const headerHeight = header.offsetHeight;
+   715→      const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+   716→      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+   717→    }
+   718→  });
+   719→});
+   720→
+   721→// ──────────────────────────────────────────
+   722→// INITIALIZATION
+   723→// ──────────────────────────────────────────
+   724→function init() {
+   725→  renderProducts();
+   726→  renderTestimonials();
+   727→  renderCart();
+   728→  updateCartBadge();
+   729→  observeElements();
+   730→  onScroll();
+   731→}
+   732→
+   733→// Run on DOM ready
+   734→if (document.readyState === 'loading') {
+   735→  document.addEventListener('DOMContentLoaded', init);
+   736→} else {
+   737→  init();
+   738→}
+   739→

@@ -1,0 +1,22 @@
+{
+  "[project]/src/components/interactive/product-modal.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/interactive/product-modal.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_1eanyuo._.js",
+      "static/chunks/src_components_2187dz5._.js"
+    ]
+  },
+  "[project]/src/components/interactive/cart-drawer.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/interactive/cart-drawer.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_1eanyuo._.js",
+      "static/chunks/src_components_0emuyx-._.js"
+    ]
+  },
+  "[project]/src/components/interactive/back-to-top.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/src/components/interactive/back-to-top.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/_01q2kgu._.js"
+    ]
+  }
+}
