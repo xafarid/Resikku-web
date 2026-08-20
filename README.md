@@ -1,2 +1,2 @@
-# RESIKKU_V2
+# Resikku
 
