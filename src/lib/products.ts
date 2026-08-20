@@ -7,7 +7,10 @@ export type ProductIcon =
   | "lavender"
   | "greentea"
   | "citrus"
-  | "rose";
+  | "rose"
+  | "baby"
+  | "charcoal"
+  | "eucalyptus";
 
 export interface Product {
   id: number;
