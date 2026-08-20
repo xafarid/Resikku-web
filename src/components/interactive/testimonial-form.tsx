@@ -58,26 +58,23 @@ export function TestimonialForm({ open, onOpenChange }: TestimonialFormProps) {
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/testimonials", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const testimonial = {
+        id: Date.now(),
           name: name.trim(),
           role: role.trim() || "Pelanggan Setia",
           rating,
           text: text.trim(),
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Gagal mengirim ulasan.");
-      }
+        createdAt: new Date().toISOString(),
+      };
+      const stored = JSON.parse(localStorage.getItem("resikku-testimonials") || "[]");
+      localStorage.setItem(
+        "resikku-testimonials",
+        JSON.stringify([testimonial, ...stored].slice(0, 20))
+      );
       setSuccess(true);
       setTimeout(() => handleClose(false), 2200);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Terjadi kesalahan. Coba lagi."
-      );
+    } catch {
+      setError("Ulasan tidak dapat disimpan di perangkat ini.");
     } finally {
       setSubmitting(false);
     }

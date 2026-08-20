@@ -90,21 +90,15 @@ export function Footer() {
     if (!email) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Gagal");
+      localStorage.setItem("resikku-newsletter", email);
       toast.success("Berhasil berlangganan!", {
         description:
           "Kamu akan mungkin info produk terbaru & promo eksklusif.",
       });
       setEmail("");
-    } catch (err) {
+    } catch {
       toast.error("Gagal berlangganan", {
-        description: err instanceof Error ? err.message : "Coba lagi nanti.",
+        description: "Coba lagi nanti.",
       });
     } finally {
       setLoading(false);

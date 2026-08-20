@@ -93,27 +93,16 @@ export function ExitIntentPopup() {
     }
     setStatus("loading");
     try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "exit-intent" }),
+      localStorage.setItem("resikku-newsletter", email);
+      setStatus("done");
+      toast.success("Berhasil mendapatkan voucher!", {
+        description: "Email kamu tersimpan di perangkat ini.",
       });
-      const data = await res.json();
-      if (data.success) {
-        setStatus("done");
-        toast.success("Kode voucher dikirim ke email kamu!", {
-          description: "Cek inbox (dan folder spam) untuk kode 10% off",
-        });
-        // Auto-close after 3s
-        setTimeout(() => {
-          setOpen(false);
-          setStatus("idle");
-          setEmail("");
-        }, 3000);
-      } else {
-        toast.error(data.error || "Gagal subscribe");
+      setTimeout(() => {
+        setOpen(false);
         setStatus("idle");
-      }
+        setEmail("");
+      }, 3000);
     } catch {
       toast.error("Gagal subscribe, coba lagi");
       setStatus("idle");
