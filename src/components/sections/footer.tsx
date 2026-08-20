@@ -261,7 +261,7 @@ export function Footer() {
           {/* Social media with brand-colored hover */}
           <div className="flex items-center gap-2">
             <a
-              href="#"
+              href="https://www.instagram.com/resikku.essentials"
               aria-label="Instagram"
               className="social-ig w-9 h-9 rounded-full bg-cream/10 flex items-center justify-center text-cream/80"
             >
