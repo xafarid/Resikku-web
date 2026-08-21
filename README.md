@@ -101,10 +101,10 @@ Atau dengan Bun:
 bunx next dev
 ```
 
-Setelah server berjalan, buka alamat yang ditampilkan oleh Next.js, umumnya:
+Setelah server berjalan, buka alamat yang ditampilkan oleh Next.js:
 
 ```text
-http://localhost:3000
+http://localhost:8080
 ```
 
 ### 4. Menjalankan lint
